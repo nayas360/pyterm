@@ -20,7 +20,7 @@ def main(argv):
 
     args = get_args(argv)
     # The shell does the work of replacing
-    # vars already. Code segment below
+    #vars already. Code segment below
     #is not required anymore.
     #args = replace_vars(args)
     

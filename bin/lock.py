@@ -15,7 +15,7 @@ def main(argv):
     if '-h' in argv:
         _help()
         return
-    # The shell doesnt send the
+    #The shell doesnt send the
     #command name in the arg list
     #so the next line is not needed
     #anymore

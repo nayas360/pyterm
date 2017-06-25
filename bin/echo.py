@@ -25,7 +25,7 @@ def main(argv):
         return
     # The shell doesnt send the
     # command name in the arg list
-    # so the next line is not needed
+    #so the next line is not needed
     #anymore
     #argv.pop(0)
 
@@ -49,11 +49,11 @@ def main(argv):
     # is not required anymore.
     # argv=replace_vars(argv)
 
-    # make the string
+    #make the string
     if len(argv) != 0:
         s = make_s(argv)
     else:
-        # insert blanks if argv is empty
+        #insert blanks if argv is empty
         s=' '
     #for detecting escape sequences
     if '\\n' in s:

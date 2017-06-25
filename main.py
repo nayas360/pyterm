@@ -1,7 +1,11 @@
 # Shell prototype
 from lib.core import *
 
-P = 'storage/sdcard1/com.hipipal.qpyplus/projects3/shell'
+# The code segment below is for
+# setting up the path in android
+
+# Generally it should be in this path
+P = 'sdcard/com.hipipal.qpyplus/projects3/shell'
 try:
     os.chdir(P)
 except OSError:
@@ -13,5 +17,4 @@ def main():
 
 
 if __name__ == '__main__':
-    os.system('clear')
     main()

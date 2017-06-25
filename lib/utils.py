@@ -109,7 +109,6 @@ def get_func_list(hidden=False):
     f.append('exit')
     f.append('help')
     f.append('mkdir')
-    f.append('type')
     if hidden == True:
         # If hidden commands required
         # Append Hidden commands here
@@ -147,7 +146,7 @@ class property_manager:
         config = cp.ConfigParser()
         config.read(c_path)
         section = 'Property'
-        if config.has_option(section, var):
+        if config.has_option(section,var):
             config.remove_option(section,var)
         with open(c_path,'w') as configs:
             config.write(configs)
@@ -285,7 +284,7 @@ def analyze(inp):
     the input for other expressions
     returns None'''
     # The shell doesnt send the command
-    # name in arg list anymore
+    #name in arg list anymore
     #so next line is not required
     #inp=make_s(inp)
     #print(inp)

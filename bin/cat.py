@@ -1,7 +1,6 @@
 # type command prints file contents
 from lib.utils import *
 
-
 def _help():
     usage = '''
 Usage: cat (file)
@@ -14,7 +13,6 @@ name.
 
 '''
     print(usage)
-
 
 def main(argv):
     if len(argv) < 1 or '-h' in argv:
@@ -32,7 +30,7 @@ def main(argv):
     # argv=replace_vars(argv)
     argv = make_s(argv)
 
-    path = get_path() + argv
+    path = get_path()+argv
     if os.path.isfile(path):
         with open(path) as f:
             data = f.readlines()
@@ -43,4 +41,4 @@ def main(argv):
     elif os.path.isdir(path):
         err(3, add=argv + ' is a directory')
     else:
-        err(2, path)
+        err(2,path)
