@@ -96,7 +96,8 @@ def get_func_list():
            'core',
            'common',
            '.conf',
-           '.last_tmp']
+           '.last_tmp'
+           '.except']
     for i in rem:
         try:
             func.remove(i)
@@ -142,6 +143,8 @@ def get_last_path(path):
     last = str()
     ctr = 0
     i = 1
+    if path[-1] != '/':
+        path += '/'
     while ctr != 2:
         last += path[-i]
         if path[-i] == '/':
@@ -198,61 +201,11 @@ def isValid(inp):
     __doc__ = '''
 Checks for valid input'''
 
-    excepts = ['os',
-               'ArithmeticError', 'AssertionError',
-               'AttributeError', 'BaseException',
-               'BufferError', 'BytesWarning',
-               'DeprecationWarning', 'EOFError',
-               'Ellipsis', 'EnvironmentError',
-               'Exception',
-               'FloatingPointError', 'FutureWarning',
-               'GeneratorExit', 'IOError',
-               'ImportError', 'ImportWarning',
-               'IndentationError', 'IndexError',
-               'KeyError', 'KeyboardInterrupt',
-               'LookupError', 'MemoryError',
-               'NameError', 'None',
-               'NotImplemented', 'NotImplementedError',
-               'OSError', 'OverflowError',
-               'PendingDeprecationWarning',
-               'ReferenceError', 'ResourceWarning',
-               'RuntimeError', 'RuntimeWarning',
-               'StopIteration', 'SyntaxError',
-               'SyntaxWarning', 'SystemError',
-               'SystemExit', 'TabError',
-               'TypeError', 'UnboundLocalError',
-               'UnicodeDecodeError', 'UnicodeEncodeError',
-               'UnicodeError', 'UnicodeTranslateError',
-               'UnicodeWarning', 'UserWarning',
-               'ValueError', 'Warning',
-               'ZeroDivisionError',
-               '_', '__build_class__',
-               '__debug__', '__doc__',
-               '__import__', '__name__',
-               '__package__', 'abs', 'all',
-               'any', 'ascii', 'bin', 'bool',
-               'bytearray', 'bytes', 'callable',
-               'chr', 'classmethod', 'compile',
-               'complex', 'copyright', 'credits',
-               'delattr', 'dict', 'dir', 'divmod',
-               'enumerate', 'eval', 'exec', 'exit',
-               'filter', 'float', 'format',
-               'frozenset', 'getattr', 'globals',
-               'hasattr', 'hash', 'help', 'hex',
-               'id', 'int', 'isinstance',
-               'issubclass', 'iter', 'len',
-               'license', 'list', 'locals', 'map',
-               'max', 'memoryview', 'min', 'next',
-               'object', 'oct', 'open', 'ord', 'pow',
-               'print', 'property', 'quit', 'range'
-                                            'repr', 'reversed', 'round', 'set',
-               'setattr', 'slice', 'sorted',
-               'staticmethod', 'str', 'sum',
-               'super', 'tuple', 'type', 'vars',
-               'zip']
-
+    with open('bin/.exception') as exc:
+        excepts = exc.readlines()
+    # excepts[0]
     for i in range(len(excepts)):
-        if excepts[i] in inp:
+        if excepts[i][:-2] in inp:
             return False
     return True
 
