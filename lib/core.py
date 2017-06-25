@@ -10,11 +10,11 @@ class shell():
         return '<Shell Instance>'
 
     def get_input(self):
-        if prop.get('prompt') != 'err':
+        if prop.get('prompt') != NULL:
             if prop.get('prompt') == '-def':
                 sh = '@shell:' + get_path() + '> '
             else:
-                sh = prop.get('prompt')
+                sh = prop.get('prompt') + ' '
         else:
             sh = '@shell:' + get_path() + '> '
         inp = input(sh)

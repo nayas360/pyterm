@@ -51,9 +51,10 @@ def main(argv):
 
     if len(argv) < 2:
         val = prop.get(var)
-        if val == 'err':
-            err(4,var)
-        print(val)
+        if val == NULL:
+            err(4, var)
+            return
+        print(val)          
         return
 
     #remove name of var

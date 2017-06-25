@@ -37,7 +37,7 @@ def main(argv):
         return
 
     if './' in argv:
-        if prop.get('path') == 'root/':
+        if get_path() == 'root/':
             print('Already in root/')
             return
         path = 'root/'

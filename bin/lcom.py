@@ -6,7 +6,9 @@ def _help():
     usage = '''Usage: help [options]
 
 -h            Print this help
--s (char)     Print Commands starting
+-a            Print all commands
+              along with hidden ones.
+-s (char)     Print commands starting
               with (char).'''
     print(usage)
 
@@ -16,16 +18,25 @@ def main(argv):
         return
 
     f = get_func_list()
+
+    # check if print hidden commands
+    if '-a' in argv:
+        argv.remove('-a')
+        # append hidden commands
+        H = ' <H>'
+        f.append('set' + H)
+        # sort at last
+        f.sort()
+
     if '-s' in argv:
         # The shell doesnt send the
         # command name in the arg list
         # so the next line is not needed
         # anymore
         # argv.pop(0)#remove com name
-        argv.remove("-s")  # argv.pop(0)#remove arg
-        #print(str(argv[0]))
+        argv.pop(0)  # remove arg
         try:
-            arg = str(argv[0])
+            arg = argv[0]
             if arg.isupper():
                 arg = arg.lower()
             print('Section:', arg.upper())

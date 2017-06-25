@@ -90,11 +90,11 @@ def err(n, inp=None, add=None):
     else:
         print('Invalid Error code')
 
-
 #Path functions_________________________
 
 # config path
 c_path = 'lib/.configs'
+NULL = 'NULL'
 
 def get_func_list():
     func = os.listdir('bin/')
@@ -124,7 +124,7 @@ class property_manager:
             val = config.get(self.section,var)
             return val
         else:
-            return 'err'
+            return NULL
 
     def set(self, var, val):
         # universal set prop method
@@ -166,7 +166,6 @@ def write_config():
         config['Property'] = {'save_state': '0'}
         with open(c_path, 'w') as configs:
             config.write(configs)
-
 
 def get_path():
     __doc__='''
@@ -293,6 +292,8 @@ def analyze(inp):
         if inp in dir():
             print('"', inp, '" is a mathematical function', sep='')
             return
+        # add true and false
+        exec('true,false=True,False')
         # math func lister__________
         if inp == '--math':
             d=dir()
