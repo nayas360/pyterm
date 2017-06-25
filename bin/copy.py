@@ -23,7 +23,7 @@ def main(argv):
     # The shell does the work of replacing
     # vars already. Code segment below
     # is not required anymore.
-    # args = replace_vars(args)
+    #args = replace_vars(args)
     
     try:
         _from = get_path() + args[0]

@@ -31,9 +31,9 @@ def main(argv):
     try:
         os.mkdir(path)
     except OSError:
-        print('"', argv[0], '" directory already exsists', sep='')
+        print('"', argv[0], '" directory already exsists',sep='')
         return
-    print('"', argv[0], '" directory created', sep='')
+    print('"', argv[0], '" directory created',sep='')
     #print('Path:',path)
 
 def _help():

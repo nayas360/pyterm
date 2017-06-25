@@ -64,18 +64,18 @@ def main(argv):
             # return
             # else:
             # err(2,path)
-            # return
+            #return
         else:
             err(2,path)
             return
     except OSError:
-        err(2, path[:-1])
+        err(2,path[:-1])
 
 def goto(path):
     if os.path.isfile(path):
         err(2, add='Cant cd into a file')
         return
-    if os.listdir(path) in (os.listdir('lib'), os.listdir('bin'), os.listdir()):
+    if os.listdir(path) in (os.listdir('lib'), os.listdir('bin'),os.listdir()):
         err(2,path)
         return
     set_path(path)

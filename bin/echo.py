@@ -27,15 +27,15 @@ def main(argv):
     # command name in the arg list
     # so the next line is not needed
     # anymore
-    # argv.pop(0)
+    #argv.pop(0)
 
-    # if usage of global vars is enabled
+    #if usage of global vars is enabled
     if '-all' in argv:
         argv.remove('-all')
         if argv == []:
             _help()
             return
-        # search and replace vars wid values
+        #search and replace vars wid values
         for i in range(len(argv)):
             var = argv[i]
             if var in prop.vars():
@@ -51,10 +51,10 @@ def main(argv):
 
     # make the string
     s = make_s(argv)
-    # for detecting escape sequences
+    #for detecting escape sequences
     if '\\n' in s:
         s = s.replace('\\n', '\n')
     # for inserting blank line
     if s == '.':
-        s = ' '
+        s=' '
     print(s)

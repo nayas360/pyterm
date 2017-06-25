@@ -18,7 +18,7 @@ def main(argv):
         return
     # The shell doesnt send the
     # command name in the arg list
-    # so the next line is not needed
+    #so the next line is not needed
     #anymore
     #argv.pop(0)
     try:

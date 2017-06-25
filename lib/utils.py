@@ -64,7 +64,7 @@ def err(n, inp=None, add=None):
     elif n == 3:
         if inp != None:
             print('Error[3]: "', inp, '" could not be opened', sep='')
-        elif add != None:
+        elif add !=None:
             print('Error[3]:',add)
         else:
             print('Error[3]: file could not be read')
@@ -73,13 +73,13 @@ def err(n, inp=None, add=None):
     elif n == 4:
         if inp != None:
             print('Error[4]: undefined variable "', inp, '"', sep='')
-        elif add != None:
+        elif add !=None:
             print('Error[4]:',add)
         else:
             print('Error[4]: undefined variable')
         return
     # prototype declaration
-    elif n == 5:
+    elif n==5:
         if inp!=None:
             pass
         elif add!=None:
@@ -91,13 +91,14 @@ def err(n, inp=None, add=None):
         print('Invalid Error code')
 
 
-# Manager functions______________________
+#Manager functions______________________
 
 # config path
 c_path = 'lib/.configs'
 NULL = 'NULL'
 
-def get_func_list():
+
+def get_func_list(hidden=False):
     func = os.listdir('bin/')
     f = list()
     for i in func:
@@ -111,6 +112,11 @@ def get_func_list():
     f.append('help')
     f.append('mkdir')
     f.append('type')
+    if hidden == True:
+        # If hidden commands required
+        # Append Hidden commands here
+        f.append('set')
+        f.append('fwd')
     return sorted(f)
 
 class property_manager:
@@ -132,8 +138,9 @@ class property_manager:
         config = cp.ConfigParser()
         config.read(c_path)
         config.set(self.section, var, val)
-        with open(c_path, 'w') as configs:
+        with open(c_path,'w') as configs:
             config.write(configs)
+
     def vars(self):
         config = cp.ConfigParser()
         config.read(c_path)
@@ -145,7 +152,7 @@ class property_manager:
         section = 'Property'
         if config.has_option(section, var):
             config.remove_option(section, var)
-        with open(c_path, 'w') as configs:
+        with open(c_path,'w') as configs:
             config.write(configs)
         
 
@@ -157,15 +164,15 @@ class property_manager:
 prop = property_manager('Property')
 
 
-# algorithm to replace vars with values
+#algorithm to replace vars with values
 def replace_vars(argv):
     for i in range(len(argv)):
         var = argv[i]
         v = var.replace('%', '')
         if '%' in var and v in prop.vars():
-            # print(i, var, v)
+            #print(i, var, v)
             argv.pop(i)
-            argv.insert(i, prop.get(v))
+            argv.insert(i,prop.get(v))
     return argv
 
 
@@ -177,11 +184,11 @@ def write_config():
         config['RESERVED'] = {'path': 'root/'}
         # global vars is property
         config['Property'] = {'save_state': '0'}
-        with open(c_path, 'w') as configs:
+        with open(c_path,'w') as configs:
             config.write(configs)
 
 
-# Path functions_________________________
+#Path functions_________________________
 
 def get_path():
     __doc__='''
@@ -229,7 +236,7 @@ def get_prv_path():
     returns path as a string.'''
     path = get_path()
     last = get_last_path(path) + '/'
-    path = path[:-len(last)]
+    path=path[:-len(last)]
     return path
 
 def get_prv_path2(path):
@@ -238,7 +245,7 @@ def get_prv_path2(path):
     of the path given as argument.
     returns path as string.'''
     last = get_last_path(path) + '/'
-    path = path[:-len(last)]
+    path=path[:-len(last)]
     return path
 
 
@@ -285,8 +292,8 @@ def analyze(inp):
     # The shell doesnt send the command
     # name in arg list anymore
     # so next line is not required
-    # inp=make_s(inp)
-    # print(inp)
+    #inp=make_s(inp)
+    #print(inp)
     #check if is a directory
     if os.path.isdir(get_path()+inp):
         if '.' in inp:
@@ -299,7 +306,7 @@ def analyze(inp):
         return
     #check if is a valid input
     if isValid(inp) or 'inp' in inp:
-        err(0, inp)
+        err(0,inp)
         return
         
     try:
@@ -307,12 +314,12 @@ def analyze(inp):
         #math func inp catcher
         #to prevent builtins msg disp
         if inp in dir():
-            print('"', inp, '" is a mathematical function', sep='')
+            print('"', inp, '" is a mathematical function',sep='')
             return
         #add true and false
         exec('true,false=True,False')
         # math func lister__________
-        if inp == '--math':
+        if inp =='--math':
             d=dir()
             d.remove('__doc__')
             d.remove('inp')

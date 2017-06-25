@@ -31,7 +31,7 @@ def main(argv):
         _help()
         return
     old = get_path() + args[0]
-    new = get_path() + args[1]
+    new = get_path()+args[1]
     try:
         os.rename(old,new)
     except OSError:

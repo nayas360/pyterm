@@ -43,7 +43,7 @@ def main(argv):
         # else:
         path = get_path() + make_s(argv)
     else:
-        path = get_path()
+        path=get_path()
     
     if os.path.isfile(path):
         err(2, add='Cant list a file')

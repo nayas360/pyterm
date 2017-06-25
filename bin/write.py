@@ -45,19 +45,19 @@ def main(argv):
         argv.pop(0)
         path = get_path() + make_s(argv)
         try:
-            with open(path, 'w') as f:
+            with open(path,'w') as f:
                 pass
-            print('Writing over "', make_s(argv), '" file', sep='')
+            print('Writing over "', make_s(argv), '" file',sep='')
         except IOError:
             err(3, add='Cant write into a directory')
             return
 
     path = get_path() + make_s(argv)
-    s = 'write>'
+    s='write>'
     try:
-        with open(path, 'a') as f:
+        with open(path,'a') as f:
             while True:
-                inp = input(s)
+                inp=input(s)
                 if '-exit' in inp:
                     break
                 elif '-show' in inp:
@@ -65,7 +65,7 @@ def main(argv):
                     _show(path)
                     f = open(path,'a')
                 else:
-                    print(inp, file=f)
+                    print(inp,file=f)
     except IOError:
         err(3, add='Cant write into a directory')
 

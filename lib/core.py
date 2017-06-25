@@ -26,10 +26,9 @@ class shell():
         inp = make_s(replace_vars(inp))
         inp = inp.split()
         # print(inp)
-        f_list = get_func_list()
-        #add hidden command
-        f_list.append('set')
-        #end add extras
+        # Get hidden commands as well
+        f_list = get_func_list(True)
+
         try:
             f = inp[0]
             inp.pop(0)
@@ -46,7 +45,7 @@ class shell():
                 except TypeError:
                     err(1)
             except AttributeError:
-                err(1, f)
+                err(1,f)
         elif f not in f_list:
             analyze(f)
 

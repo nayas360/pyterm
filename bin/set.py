@@ -39,7 +39,7 @@ def main(argv):
             var = argv[1]
             #detect system vars
             if var == 'save_state':
-                err(4, add='Cant delete system variable "' + var + '"')
+                err(4, add='Cant delete system variable "' + var+'"')
                 return
             prop.delete(var)
             return
@@ -52,7 +52,7 @@ def main(argv):
     if len(argv) < 2:
         val = prop.get(var)
         if val == NULL:
-            err(4, var)
+            err(4,var)
             return
         print(val)          
         return
@@ -62,6 +62,6 @@ def main(argv):
     # make the rest the val
     val = make_s(argv)
     try:
-        prop.set(var, val)
+        prop.set(var,val)
     except ValueError:
         err(4, add="can't create this variable")

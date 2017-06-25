@@ -19,13 +19,14 @@ def main(argv):
 
     f = get_func_list()
 
-    # check if print hidden commands
+    #check if print hidden commands
     if '-a' in argv:
         argv.remove('-a')
         # append hidden commands
         H = ' <H>'
         f.append('set' + H)
-        # sort at last
+        f.append('fwd' + H)
+        #sort at last
         f.sort()
 
     if '-s' in argv:
@@ -36,7 +37,7 @@ def main(argv):
         # argv.pop(0)#remove com name
         argv.pop(0)  #remove arg
         try:
-            arg = argv[0]
+            arg =argv[0]
             if arg.isupper():
                 arg = arg.lower()
             print('Section:', arg.upper())
@@ -46,7 +47,8 @@ def main(argv):
             return
         except IndexError:
             _help()
-
+            return
+        
     last='a'
     for i in f:
         if i[0] != last:
