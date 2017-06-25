@@ -1,0 +1,7 @@
+This File Has been written over
+Original File Data should be lost in this manner...
+SUCCESS!!
+
+original file was lost
+ID: rewrite test
+This line was appended later...
