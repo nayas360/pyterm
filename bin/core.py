@@ -1,9 +1,13 @@
 # CORE file contains main shell mechanisms
 from importlib import import_module as _import
 from bin.common import *
+from bin.vfs import init
 
 
 class shell():
+    def __init__(self):
+        init()
+
     def __repr__(self):
         return '<Shell Instance>'
 

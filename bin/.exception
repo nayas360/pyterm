@@ -108,7 +108,6 @@ object
 oct
 open
 ord
-pow
 print
 property
 quit

@@ -21,14 +21,17 @@ def main(argv):
     if '-s' in argv:
         argv.pop(0)  # remove com name
         argv.pop(0)  # remove arg
-        arg = make_s2(argv[0])
-        if arg.isupper():
-            arg = arg.lower()
-        print('Section:', arg.upper())
-        for i in f:
-            if i[0] == arg:
-                print('    ==>', i)
-        return
+        try:
+            arg = make_s2(argv[0])
+            if arg.isupper():
+                arg = arg.lower()
+            print('Section:', arg.upper())
+            for i in f:
+                if i[0] == arg:
+                    print('    ==>', i)
+            return
+        except IndexError:
+            _help()
 
     last = 'a'
     for i in f:

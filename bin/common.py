@@ -95,6 +95,7 @@ def get_func_list():
     rem = ['__init__',
            '__pycach',
            'core',
+           'vfs',
            'common',
            '.conf',
            '.last_tmp',
@@ -227,6 +228,9 @@ def analyze(inp):
     # print(inp)
     # check if is a directory
     if os.path.isdir(get_path() + inp):
+        if '.' in inp:
+            err(0, inp)
+            return
         print('"', inp, '" is a directory', sep='')
         return
     elif os.path.isfile(get_path() + inp):

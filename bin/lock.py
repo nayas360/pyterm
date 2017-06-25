@@ -43,11 +43,11 @@ def lock():
             data = kw.readline()
         p = '''The shell is LOCKED.'''
         print(p)
-        inp = get_hash(getpass.getpass('Password: '))
+        inp = get_hash(getpass.getpass())
         if inp in data:
             return
         else:
-            print('Incorrect password !')
+            print('\nIncorrect password !')
             lock()
     except IOError:
         p = '''
@@ -56,6 +56,8 @@ Enter Password to register.
 '''
         print(p)
         _reg_pass()
+        print('Now locking the shell...\n')
+        lock()
 
 
 def _reg_pass():
@@ -66,7 +68,7 @@ you are typing.
     print(p)
     _pass = get_pass()
     with open(key, 'w') as kw:
-        print(_pass, file=kw)
+        print(_pass, sep='\n', file=kw)
     print('\nPassword was registered...')
 
 

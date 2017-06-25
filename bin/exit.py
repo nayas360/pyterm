@@ -1,5 +1,6 @@
 # Exit function
 from bin.common import sleep
+from bin.vfs import end
 from sys import exit
 
 
@@ -41,4 +42,5 @@ def main(argv):
     print('Closed Everything...')
     print('will exit in 2 seconds...')
     sleep(2)
+    end()
     exit()
