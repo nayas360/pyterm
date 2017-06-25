@@ -23,8 +23,11 @@ def main(argv):
     path = get_path() + inp
 
     # check if it is a file
-    if not os.path.isfile(path):
-        print('"', inp, '" is a directory', sep='')
+    if inp in os.listdir(get_path()) and not os.path.isfile(path):
+        err(3, add=inp + ' is a directory')
+        return
+    if inp not in os.listdir(get_path()):
+        err(2, path)
         return
 
     # if is file read data
@@ -46,7 +49,7 @@ def main(argv):
             except TypeError:
                 m.main()
             except AttributeError:
-                print('Error[1]: "', f, '" command was not executed', sep='')
+                err(1, f)
         elif f not in f_list:
             i = make_s(i)
             try:
@@ -60,7 +63,7 @@ def main(argv):
                     print(e)
                     return
             except NameError as e:
-                print('Error[0]: "', i, '" was not recognised as a command or an expression', sep='')
+                err(0, i)
             except ZeroDivisionError:
                 print('Cannot divide by zero')
             except TypeError as e:

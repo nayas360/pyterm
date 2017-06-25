@@ -21,7 +21,7 @@ While in write mode use
     print(usage)
 
 def main(argv):
-    if len(argv) < 2:
+    if len(argv) < 2 or '-h' in argv:
         _help()
         return
 

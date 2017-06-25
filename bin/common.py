@@ -18,6 +18,7 @@ def make_s(l):
     s = s[:-1]
     return s
 
+
 def make_s2(l):
     __doc__ = '''
     Makes a sentence from a
@@ -30,11 +31,61 @@ def make_s2(l):
     return s
 
 
+# Error definitions______________________
+def err(n, inp=None, add=None):
+    # shell error
+    if n == 0:
+        if inp != None:
+            print('Error[0]: "', inp, '" was not recognised as a command or an expression', sep='')
+        elif add != None:
+            print('Error[0]:', add)
+        else:
+            print('Error[0]: invalid command or expression')
+        return
+    # shell error
+    elif n == 1:
+        if inp != None:
+            print('Error[1]: "', inp, '" command could not be executed', sep='')
+        elif add != None:
+            print('Error[1]:', add)
+        else:
+            print('Error[1]: command was not executed')
+        return
+    # path error
+    elif n == 2:
+        if inp != None:
+            print('Error[2]: "', inp, '" path does not exist', sep='')
+        elif add != None:
+            print('Error[2]:', add)
+        else:
+            print('Error[2]: invalid path')
+        return
+    # read write error
+    elif n == 3:
+        if inp != None:
+            print('Error[3]: "', inp, '" could not be opened', sep='')
+        elif add != None:
+            print('Error[3]:', add)
+        else:
+            print('Error[3]: file could not be read')
+        return
+    # prototype declaration
+    elif n == 4:
+        if inp != None:
+            pass
+        elif add != None:
+            pass
+        else:
+            pass
+        return
+    else:
+        print('Invalid Error code')
+
+
 # Path functions_________________________
 
 # config path
 c_path = 'bin/.configs'
-
 
 def get_func_list():
     func = os.listdir('bin/')
@@ -120,6 +171,7 @@ def get_prv_path2(path):
     return path
 
 
+
 #Others_________________________________
 def get_args(inp):
     __doc__ = '''
@@ -141,7 +193,6 @@ def get_args(inp):
         print('2nd argument is missing')
         return []
     return [old, new]
-
 
 def isValid(inp):
     __doc__ = '''
@@ -205,7 +256,6 @@ Checks for valid input'''
             return False
     return True
 
-
 def analyze(inp):
     __doc__ = '''
     Basic function to analyze
@@ -215,10 +265,8 @@ def analyze(inp):
     inp = make_s(inp)
 
     if not isValid(inp) or 'inp' in inp:
-        print('Error[0]: "', inp, '" was not recognised as a command or an expression', sep='')
+        err(0, inp)
         return
-    else:
-        pass
         
     try:
         exec('from math import *')
@@ -228,7 +276,7 @@ def analyze(inp):
     except SyntaxError:
         print("Couldn\'t evaluate the expression")
     except NameError as e:
-        print('Error[0]: "', inp, '" was not recognised as a command or an expression', sep='')
+        err(0, inp)
     except ZeroDivisionError:
         print('Cannot divide by zero')
     except TypeError as e:

@@ -32,6 +32,6 @@ def main(argv):
         arg = time.strftime('%A, %d %B %Y')
 
     droid = sl4a.Android()
-    print(arg)
+    # print(arg)
     droid.makeToast('Speaking...')
     droid.ttsSpeak(arg)

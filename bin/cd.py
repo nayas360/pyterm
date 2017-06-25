@@ -21,7 +21,7 @@ def main(argv):
     argv.pop(0)
 
     if '..' in argv and get_path() == 'root/':
-        print('Error[3]: Cant go back from root/')
+        err(2, add='Cant cd back from root/')
         return
     elif '..' in argv and get_path() != 'root/':
         path = get_prv_path()
@@ -45,12 +45,12 @@ def main(argv):
         goto(path)
         return
     else:
-        print('Error[2]: "', path, '" path does not exist', sep='')
+        err(2, path)
         return
 
 def goto(path):
     if os.path.isfile(path[:-1]):
-        print('Error[3]: Cant cd into a file')
+        err(2, add='Cant cd into a file')
         return
     set_path(path)
     # print('Path:',path)

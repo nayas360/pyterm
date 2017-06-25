@@ -27,9 +27,9 @@ class shell():
                 try:
                     m.main()
                 except TypeError:
-                    print('Error[1]: Bad arguments')
+                    err(1)
             except AttributeError:
-                print('Error[1]: "', f, '" command was not executed', sep='')
+                err(1, f)
         elif f not in f_list:
             analyze(inp)
 

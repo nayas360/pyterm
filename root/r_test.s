@@ -1,16 +1,15 @@
-#Run Test
+#Run test
 
-echo Run Test Running....
+echo Run Test Running...
 sleep 2
-#sleep for 2 seconds
 a=input('Enter Something: ')
-sleep 2
-echo You have entered
+echo You entered
 a
+sleep 1
 
-echo now lets do some maths...
-echo 2+2 is ??
-2+2
-echo Great ....
-echo Now its time to go....
-echo :D bye.......
+echo Now lets do some maths...
+echo 1+1=2 right?
+sleep 1
+echo type it in the shell later to check...
+
+echo Now bye..... :D

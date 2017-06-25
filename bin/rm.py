@@ -14,7 +14,7 @@ def main(argv):
         try:
             os.rmdir(path)
         except OSError:
-            print('Error[5]: "', argv[0], '" could not be deleted', sep='')
+            err(2, add=argv[0] + ' could not be deleted')
             return
         print('"', argv[0], '" directory has been deleted', sep='')
         return
