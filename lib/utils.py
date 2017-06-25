@@ -96,7 +96,6 @@ def err(n, inp=None, add=None):
 # config path
 c_path = 'lib/.configs'
 
-
 def get_func_list():
     func = os.listdir('bin/')
     f = list()
@@ -113,20 +112,16 @@ def get_func_list():
     f.append('type')
     return sorted(f)
 
-
 class property_manager:
-    def get_section(self, var):
-        if var == 'path':
-            return 'RESERVED'
-        return 'Property'
+    def __init__(self, section):
+        self.section = section
 
     def get(self, var):
         # universal get prop method
         config = cp.ConfigParser()
         config.read(c_path)
-        section = self.get_section(var)
-        if config.has_option(section, var):
-            val = config.get(section, var)
+        if config.has_option(self.section, var):
+            val = config.get(self.section, var)
             return val
         else:
             return 'err'
@@ -135,11 +130,9 @@ class property_manager:
         # universal set prop method
         config = cp.ConfigParser()
         config.read(c_path)
-        section = self.get_section(var)
-        config.set(section, var, val)
+        config.set(self.section, var, val)
         with open(c_path, 'w') as configs:
             config.write(configs)
-
     def vars(self):
         config = cp.ConfigParser()
         config.read(c_path)
@@ -159,12 +152,12 @@ class property_manager:
 
 
 # Property manager instance
-prop = property_manager()
-
+prop = property_manager('Property')
+    
 
 def write_config():
     # built in check safe
-    if '.configs' not in os.listdir('bin'):
+    if '.configs' not in os.listdir('lib'):
         config = cp.ConfigParser()
         # path is reserved
         config['RESERVED'] = {'path': 'root/'}
@@ -180,9 +173,9 @@ def get_path():
     of the virtual file
     system.
     returns a string.'''
+    prop = property_manager('RESERVED')
     path = prop.get('path')
     return path
-
 
 def set_path(path):
     __doc__ = '''
@@ -191,8 +184,8 @@ def set_path(path):
     returns None'''
     if path[-1] != '/':
         path += '/'
+    prop = property_manager('RESERVED')
     prop.set('path', path)
-
 
 def get_last_path(path):
     __doc__ = '''
@@ -213,7 +206,6 @@ def get_last_path(path):
     last = make_s2(list(reversed(last)))
     return last
 
-
 def get_prv_path():
     __doc__ = '''
     Gets the previous path
@@ -223,7 +215,6 @@ def get_prv_path():
     last = get_last_path(path) + '/'
     path = path[:-len(last)]
     return path
-
 
 def get_prv_path2(path):
     __doc__ = '''
@@ -235,7 +226,7 @@ def get_prv_path2(path):
     return path
 
 
-# Others_________________________________
+#Others_________________________________
 def get_args(inp):
     __doc__ = '''
     Gets the arguments seperated
@@ -264,7 +255,7 @@ def isValid(inp):
     with open(exceptsFile) as exc:
         excepts = exc.readlines()
     for i in excepts:
-        # print(r'%s'%i)
+        #print(r'%s'%i)
         if i[:-1] in inp:
             return True
     return False
@@ -290,7 +281,7 @@ def analyze(inp):
     elif os.path.isfile(get_path() + inp):
         print('"', inp, '" is a file', sep='')
         return
-    # check if is a valid input
+    #check if is a valid input
     if isValid(inp) or 'inp' in inp:
         err(0, inp)
         return
@@ -298,7 +289,7 @@ def analyze(inp):
     try:
         exec('from math import *')
         # math func inp catcher
-        # to prevent builtins msg disp
+        #to prevent builtins msg disp
         if inp in dir():
             print('"', inp, '" is a mathematical function', sep='')
             return

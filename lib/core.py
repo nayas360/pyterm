@@ -3,16 +3,20 @@ from importlib import import_module as _import
 from lib.utils import *
 from lib.vfs import init
 
-
 class shell():
     def __init__(self):
         init()
-
     def __repr__(self):
         return '<Shell Instance>'
 
     def get_input(self):
-        sh = '@shell:' + get_path() + '> '
+        if prop.get('prompt') != 'err':
+            if prop.get('prompt') == '-def':
+                sh = '@shell:' + get_path() + '> '
+            else:
+                sh = prop.get('prompt')
+        else:
+            sh = '@shell:' + get_path() + '> '
         inp = input(sh)
         return inp
 
@@ -21,7 +25,7 @@ class shell():
         f_list = get_func_list()
         # add hidden command
         f_list.append('set')
-        # end add extras
+        #end add extras
         try:
             f = inp[0]
             inp.pop(0)
@@ -44,7 +48,7 @@ class shell():
 
     def start(self):
         print('Starting Shell...\n')
-        # write config file
+        #write config file
         write_config()
         sleep(1)
         print('Running...\n')

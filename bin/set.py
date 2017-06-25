@@ -1,7 +1,6 @@
 # set command to set global variables
 from lib.utils import *
 
-
 def _help():
     usage = '''
 Usage: set [options] (var) [value]
@@ -19,7 +18,6 @@ if [value] is not given,
 current value is returned
 '''
     print(usage)
-
 
 def main(argv):
     if len(argv) < 1 or '-h' in argv:
@@ -48,18 +46,18 @@ def main(argv):
         except IndexError:
             err(4, add='variable name was missing')
             return
-    try:
-        var = argv[0]
-        # detect reseved variables
-        # and deny access
-        if var == 'path':
-            err(4, add='"' + var + '" is a reserved variable')
-            return
-        val = argv[1]
-    except IndexError:
+
+    var = argv[0]
+
+    if len(argv) < 2:
         val = prop.get(var)
         if val == 'err':
             err(4, var)
         print(val)
         return
+
+    # remove name of var
+    argv.pop(0)
+    # make the rest the val
+    val = make_s(argv)
     prop.set(var, val)

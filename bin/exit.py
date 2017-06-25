@@ -43,5 +43,6 @@ def die(t=2):
     sleep(t)
     if prop.get('save_state') == '0':
         set_path('root/')
+        prop.set('prompt', '-def')
     cleanup()
     exit()

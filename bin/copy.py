@@ -1,7 +1,6 @@
 # copy command to copy files only
 from lib.utils import *
 
-
 def _help():
     usage = '''
 Usage: copy (from) (to)
@@ -10,7 +9,6 @@ where (from) (to)
 are valid paths.
 '''
     print(usage)
-
 
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
@@ -44,4 +42,4 @@ def main(argv):
     except OSError:
         err(2, add='"' + os.path.basename(_from) + '" could not be copied')
         return
-        # os.remove(_from)
+        #os.remove(_from)

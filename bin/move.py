@@ -1,7 +1,6 @@
 # move command to move files only
 from lib.utils import *
 
-
 def _help():
     usage = '''
 Usage: move (from) (to)
@@ -10,7 +9,6 @@ where (from) (to)
 are valid paths.
 '''
     print(usage)
-
 
 def main(argv):
     if len(argv) < 2 or '-h' in argv:

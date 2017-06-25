@@ -23,7 +23,7 @@ u = '''
 
 v = '''
 [version]
-v2.2
+v2.3
 
 [author]
 Sayan Dutta

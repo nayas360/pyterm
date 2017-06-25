@@ -3,4 +3,5 @@ path = root/
 
 [Property]
 save_state = 0
+prompt = -def
 
