@@ -7,8 +7,7 @@ Usage: set [options] (var) [value]
 
 [options]:
 -h                Print this help.
--vars             Lists all declared
-                  variables.
+
 -del (var)        Delete variable
                   (var) if defined.
 
@@ -20,7 +19,7 @@ current value is returned
     print(usage)
 
 def main(argv):
-    if len(argv) < 1 or '-h' in argv:
+    if '-h' in argv:
         _help()
         return
     # The shell doesnt send the
@@ -30,9 +29,9 @@ def main(argv):
     # argv.pop(0) #remove arg
 
     # to show all vars
-    if '-vars' in argv:
+    if len(argv) < 1:
         for i in prop.vars():
-            print(i)
+            print(i, ' = ', prop.get(i))
         return
     if '-del' in argv:
         try:

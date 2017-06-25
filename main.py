@@ -1,7 +1,7 @@
 # Shell prototype
 from lib.core import *
 
-P = 'sdcard/com.hipipal.qpyplus/projects3/shell'
+P = 'storage/sdcard1/com.hipipal.qpyplus/projects3/shell'
 try:
     os.chdir(P)
 except OSError:
