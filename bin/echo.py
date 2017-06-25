@@ -1,7 +1,6 @@
 # echo function
 from lib.utils import make_s, prop
 
-
 def _help():
     usage = '''
 Usage: echo [options] <string>

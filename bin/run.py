@@ -46,6 +46,7 @@ def main(argv):
         except IndexError:
             continue
         if f in f_list:
+            i.pop(0)
             mod = 'bin.' + f
             m = _import(mod)
             try:
