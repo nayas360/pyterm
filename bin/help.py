@@ -20,7 +20,7 @@ u = '''
 
 v = '''
 [version]
-v1.6
+v1.7
 
 [author]
 Sayan Dutta
@@ -46,7 +46,6 @@ h = '''Usage: help [options]
 -v            Print version
 -h            Print this msg
 '''
-
 
 def main(argv):
     if '-h' in argv:

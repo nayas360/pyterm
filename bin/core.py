@@ -2,7 +2,6 @@
 from importlib import import_module as _import
 from bin.common import *
 
-
 class shell():
     def __repr__(self):
         return '<Shell Instance>'
@@ -12,15 +11,9 @@ class shell():
         inp = input(sh)
         return inp
 
-    def func_list(self):
-        func = os.listdir('bin/')
-        for i in range(len(func)):
-            func[i] = func[i][:-3]
-        return func
-
     def execute(self, inp):
         inp = inp.split()
-        f_list = self.func_list()
+        f_list = get_func_list()
         try:
             f = inp[0]
         except IndexError:
@@ -36,11 +29,9 @@ class shell():
                 except TypeError:
                     print('Error[1]: Bad arguments')
             except AttributeError:
-                print('Error[1]: "', f, '" was command not executed', sep='')
+                print('Error[1]: "', f, '" command was not executed', sep='')
         elif f not in f_list:
             analyze(inp)
-        else:
-            print('Error[0]: "', f, '" was not recognised', sep='')
 
     def start(self):
         print('Starting Shell...\n')

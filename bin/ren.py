@@ -1,7 +1,6 @@
 # ren rename command
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: ren (old) (new)
@@ -12,7 +11,6 @@ Usage: ren (old) (new)
 -h            Print this help
 '''
     print(usage)
-
 
 def main(argv):
     if '-h' in argv:

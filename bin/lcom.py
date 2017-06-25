@@ -2,7 +2,6 @@
 
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: help [options]
@@ -12,13 +11,12 @@ Usage: help [options]
               with (char).'''
     print(usage)
 
-
 def main(argv):
     if '-h' in argv:
         _help()
         return
 
-    f = func_list()
+    f = get_func_list()
     if '-s' in argv:
         argv.pop(0)  # remove com name
         argv.pop(0)  # remove arg
@@ -29,7 +27,6 @@ def main(argv):
         for i in f:
             if i[0] == arg:
                 print('    ==>', i)
-
         return
 
     last = 'a'
@@ -38,21 +35,3 @@ def main(argv):
             last = i[0]
             print('Section:', last.upper())
         print('    ==>', i)
-
-
-def func_list():
-    func = os.listdir('bin/')
-    for i in range(len(func)):
-        func[i] = func[i][:-3]
-    rem = ['__init__',
-           '__pycach',
-           'core',
-           'common',
-           '.conf',
-           '.last_tmp']
-    for i in rem:
-        try:
-            func.remove(i)
-        except ValueError:
-            continue
-    return sorted(func)

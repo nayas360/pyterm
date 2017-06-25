@@ -2,7 +2,6 @@
 
 from bin.common import *
 
-
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
         _help()
@@ -20,7 +19,6 @@ def main(argv):
         print('"', argv[0], '" directory has been deleted', sep='')
         return
     print('"', argv[0], '" file has been deleted', sep='')
-
 
 def _help():
     usage = '''Usage: rm [(dir)/(file)]

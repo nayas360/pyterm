@@ -2,7 +2,6 @@
 import time
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: speak <string>

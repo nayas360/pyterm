@@ -18,7 +18,6 @@ def make_s(l):
     s = s[:-1]
     return s
 
-
 def make_s2(l):
     __doc__ = '''
     Makes a sentence from a
@@ -37,12 +36,28 @@ def make_s2(l):
 c_path = 'bin/.configs'
 
 
+def get_func_list():
+    func = os.listdir('bin/')
+    for i in range(len(func)):
+        func[i] = func[i][:-3]
+    rem = ['__init__',
+           '__pycach',
+           'core',
+           'common',
+           '.conf',
+           '.last_tmp']
+    for i in rem:
+        try:
+            func.remove(i)
+        except ValueError:
+            continue
+    return sorted(func)
+
 def write_config():
     config = cp.ConfigParser()
     config['prop'] = {'path': 'root/'}
     with open(c_path, 'w') as configs:
         config.write(configs)
-
 
 def get_path():
     __doc__ = '''
@@ -54,7 +69,6 @@ def get_path():
     config.read(c_path)
     path = config['prop']['path']
     return path
-
 
 def set_path(path):
     __doc__ = '''
@@ -68,7 +82,6 @@ def set_path(path):
     config.set('prop', 'path', path)
     with open(c_path, 'w') as configs:
         config.write(configs)
-
 
 def get_last_path(path):
     __doc__ = '''
@@ -87,7 +100,6 @@ def get_last_path(path):
     last = make_s2(list(reversed(last)))
     return last
 
-
 def get_prv_path():
     __doc__ = '''
     Gets the previous path
@@ -97,7 +109,6 @@ def get_prv_path():
     last = get_last_path(path) + '/'
     path = path[:-len(last)]
     return path
-
 
 def get_prv_path2(path):
     __doc__ = '''
@@ -109,7 +120,7 @@ def get_prv_path2(path):
     return path
 
 
-# Others_________________________________
+#Others_________________________________
 def get_args(inp):
     __doc__ = '''
     Gets the arguments seperated
@@ -132,14 +143,11 @@ def get_args(inp):
     return [old, new]
 
 
-def analyze(inp):
+def isValid(inp):
     __doc__ = '''
-    Basic function to analyze
-    the input for other expressions
-    returns None'''
-    inp = make_s(inp)
+Checks for valid input'''
 
-    excepts = ['os', 'inp', '[', ']',
+    excepts = ['os',
                'ArithmeticError', 'AssertionError',
                'AttributeError', 'BaseException',
                'BufferError', 'BytesWarning',
@@ -180,13 +188,13 @@ def analyze(inp):
                'filter', 'float', 'format',
                'frozenset', 'getattr', 'globals',
                'hasattr', 'hash', 'help', 'hex',
-               'id', 'input', 'int', 'isinstance',
+               'id', 'int', 'isinstance',
                'issubclass', 'iter', 'len',
                'license', 'list', 'locals', 'map',
                'max', 'memoryview', 'min', 'next',
                'object', 'oct', 'open', 'ord', 'pow',
-               'print', 'property', 'quit', 'range',
-               'repr', 'reversed', 'round', 'set',
+               'print', 'property', 'quit', 'range'
+                                            'repr', 'reversed', 'round', 'set',
                'setattr', 'slice', 'sorted',
                'staticmethod', 'str', 'sum',
                'super', 'tuple', 'type', 'vars',
@@ -194,8 +202,24 @@ def analyze(inp):
 
     for i in range(len(excepts)):
         if excepts[i] in inp:
-            print('Error[0]: "', inp, '" was not recognised as a command or an expression', sep='')
-            return
+            return False
+    return True
+
+
+def analyze(inp):
+    __doc__ = '''
+    Basic function to analyze
+    the input for other expressions
+    returns None'''
+
+    inp = make_s(inp)
+
+    if not isValid(inp) or 'inp' in inp:
+        print('Error[0]: "', inp, '" was not recognised as a command or an expression', sep='')
+        return
+    else:
+        pass
+        
     try:
         exec('from math import *')
         e = eval(inp)

@@ -2,7 +2,6 @@
 from bin.common import sleep
 from sys import exit
 
-
 def _help():
     usage = '''
 Usage: exit [options]
@@ -14,7 +13,6 @@ Usage: exit [options]
 -h              Print this help.
 '''
     print(usage)
-
 
 def main(argv):
     if '-h' in argv:
