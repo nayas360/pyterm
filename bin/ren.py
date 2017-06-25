@@ -1,7 +1,6 @@
 # ren rename command
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: ren (old) (new)
@@ -13,20 +12,23 @@ Usage: ren (old) (new)
 '''
     print(usage)
 
-
 def main(argv):
     if '-h' in argv:
         _help()
         return
-    argv.pop(0)
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    # argv.pop(0)
     args = get_args(argv)
     # print(args)
     if len(args) < 2:
         _help()
         return
     old = get_path() + args[0]
-    new = get_path() + args[1]
+    new = get_path() +args[1]
     try:
-        os.rename(old, new)
+        os.rename(old,new)
     except OSError:
-        print('Error[2]: "', old, '" not found', sep='')
+        err(2, add=old + ' not found')

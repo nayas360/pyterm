@@ -1,3 +1,6 @@
-[prop]
+[RESERVED]
 path = root/
+
+[Property]
+save_state = 0
 

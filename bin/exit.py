@@ -1,8 +1,7 @@
 # Exit function
-from bin.common import sleep
-from bin.vfs import end
+from bin.common import sleep, prop, set_path
+from bin.vfs import cleanup
 from sys import exit
-
 
 def _help():
     usage = '''
@@ -16,31 +15,34 @@ Usage: exit [options]
 '''
     print(usage)
 
-
 def main(argv):
+    # exit gets an empty arg list
+    # now, shell doesnt send the
+    # comm name anymore
     if '-h' in argv:
         _help()
         return
     if '-t' in argv:
-        i = argv.index('-t') + 1
+        i = argv.index('-t')+1
         try:
             t = int(argv[i])
-            print('Stopping Shell...')
-            sleep(1)
-            print('Closed Everything...')
-            print('will exit in', t, 'seconds...')
-            sleep(t)
-            exit()
+            die(t)
         except ValueError:
             print('"', argv[i], '" is not a valid time interval...', sep='')
             print('Exiting with default time...')
         except IndexError:
             print('You forgot to give the time...')
             print('Exiting with default time...')
+    die()
+
+
+def die(t=2):
     print('Stopping Shell...')
     sleep(1)
     print('Closed Everything...')
-    print('will exit in 2 seconds...')
-    sleep(2)
-    end()
+    print('will exit in', t, 'seconds...')
+    sleep(t)
+    if prop.get('save_state') == '0':
+        set_path('root/')
+    cleanup()
     exit()

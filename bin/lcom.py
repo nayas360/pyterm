@@ -2,7 +2,6 @@
 
 from bin.common import *
 
-
 def _help():
     usage = '''Usage: help [options]
 
@@ -11,7 +10,6 @@ def _help():
               with (char).'''
     print(usage)
 
-
 def main(argv):
     if '-h' in argv:
         _help()
@@ -19,8 +17,12 @@ def main(argv):
 
     f = get_func_list()
     if '-s' in argv:
-        argv.pop(0)  # remove com name
-        argv.pop(0)  # remove arg
+        # The shell doesnt send the
+        # command name in the arg list
+        # so the next line is not needed
+        # anymore
+        # argv.pop(0)#remove com name
+        argv.pop(0)  #remove arg
         try:
             arg = make_s2(argv[0])
             if arg.isupper():
@@ -28,14 +30,14 @@ def main(argv):
             print('Section:', arg.upper())
             for i in f:
                 if i[0] == arg:
-                    print('    ==>', i)
+                    print('    ==>',i)
             return
         except IndexError:
             _help()
 
-    last = 'a'
+    last='a'
     for i in f:
         if i[0] != last:
             last = i[0]
             print('Section:', last.upper())
-        print('    ==>', i)
+        print('    ==>',i)

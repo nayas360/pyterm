@@ -2,12 +2,15 @@
 
 from bin.common import *
 
-
 def main(argv):
-    if len(argv) < 2 or '-h' in argv:
+    if len(argv) < 1 or '-h' in argv:
         _help()
         return
-    argv.pop(0)
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    # argv.pop(0)
     path = get_path() + '/' + make_s(argv)
     try:
         os.remove(path)
@@ -20,7 +23,6 @@ def main(argv):
         print('"', argv[0], '" directory has been deleted', sep='')
         return
     print('"', argv[0], '" file has been deleted', sep='')
-
 
 def _help():
     usage = '''Usage: rm [(dir)/(file)]

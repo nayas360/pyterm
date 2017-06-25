@@ -2,7 +2,6 @@
 from bin.common import *
 import hashlib, getpass
 
-
 def _help():
     usage = '''
 Usage: lock [options]
@@ -15,27 +14,28 @@ Usage: lock [options]
 
 key = 'bin/lock.key'
 
-
 def main(argv):
     if '-h' in argv:
         _help()
         return
-    argv.pop(0)
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    #argv.pop(0)
     if '-chpass' in argv:
         ch()
         return
     lock()
 
-
 def ch():
-    p = '''
+    p='''
 Unlock the shell to prove authenticity.'''
     print(p)
     lock()
     print('Authenticity Proved...')
     sleep(1)
     _reg_pass()
-
 
 def lock():
     try:
@@ -50,7 +50,7 @@ def lock():
             print('\nIncorrect password !')
             lock()
     except IOError:
-        p = '''
+        p='''
 Registered password was not found.
 Enter Password to register.
 '''
@@ -59,9 +59,8 @@ Enter Password to register.
         print('Now locking the shell...\n')
         lock()
 
-
 def _reg_pass():
-    p = '''
+    p='''
 You wont be able to see what
 you are typing.
 '''
@@ -70,8 +69,6 @@ you are typing.
     with open(key, 'w') as kw:
         print(_pass, sep='\n', file=kw)
     print('\nPassword was registered...')
-
-
 def get_pass():
     new_password = getpass.getpass('New Password: ')
     if len(new_password) < 4:
@@ -87,7 +84,6 @@ long...
     else:
         print("Passwords entered doesn't match...")
         return get_pass()
-
 
 def get_hash(_pass):
     _pass = bytes(_pass, 'utf-8')

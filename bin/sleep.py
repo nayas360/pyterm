@@ -1,7 +1,6 @@
 # sleep command
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: sleep (int)
@@ -13,12 +12,15 @@ in seconds
 '''
     print(usage)
 
-
 def main(argv):
-    if len(argv) < 2 or '-h' in argv:
+    if len(argv) < 1 or '-h' in argv:
         _help()
         return
-    argv.pop(0)
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    #argv.pop(0)
     try:
         t = int(make_s(argv))
         sleep(t)

@@ -23,7 +23,7 @@ u = '''
 
 v = '''
 [version]
-v2.1
+v2.1a
 
 [author]
 Sayan Dutta
@@ -50,8 +50,10 @@ h = '''Usage: help [options]
 -h            Print this msg
 '''
 
-
 def main(argv):
+    # help gets an empty argv,
+    # shell doesnt send the
+    # comm name anymore
     if '-h' in argv:
         print(h)
         return
@@ -64,4 +66,4 @@ def main(argv):
     if '-help' in argv:
         print(u)
         return
-    print(i, u, v)
+    print(i, u,v)

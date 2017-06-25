@@ -1,12 +1,15 @@
 # echo function
 from bin.common import make_s
 
-
 def main(argv):
-    if len(argv) < 2 or '-h' in argv:
+    if len(argv) < 1 or '-h' in argv:
         print('Usage: echo <string>')
         return
-    argv.pop(0)
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    # argv.pop(0)
     s = make_s(argv)
     if s == '.':
         s = ' '

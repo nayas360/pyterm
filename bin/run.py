@@ -2,7 +2,6 @@
 from importlib import import_module as _import
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: run (file)
@@ -14,33 +13,36 @@ script file
 '''
     print(usage)
 
-
 def main(argv):
-    if len(argv) < 2 or '-h' in argv:
+    if len(argv) < 1 or '-h' in argv:
         _help()
         return
-    argv.pop(0)  # remove the command
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    # argv.pop(0) #remove the command
     # get the path to the file
     inp = make_s(argv)
     path = get_path() + inp
 
-    # check if it is a file
+    #check if it is a file
     if inp in os.listdir(get_path()) and not os.path.isfile(path):
         err(3, add=inp + ' is a directory')
         return
     if inp not in os.listdir(get_path()):
-        err(2, path)
+        err(2,path)
         return
 
-    # if is file read data
+    #if is file read data
     with open(path) as f:
         data = f.readlines()
-    # Now try executing each line
+    #Now try executing each line
     for i in data:
         i = i.split()
         f_list = get_func_list()
         try:
-            f = i[0]
+            f=i[0]
         except IndexError:
             continue
         if f in f_list:
@@ -51,11 +53,11 @@ def main(argv):
             except TypeError:
                 m.main()
             except AttributeError:
-                err(1, f)
+                err(1,f)
         elif f not in f_list:
             i = make_s(i)
             try:
-                e = eval(i)
+                e =eval(i)
                 if e != None:
                     print(e)
             except SyntaxError:
@@ -65,7 +67,7 @@ def main(argv):
                     print(e)
                     return
             except NameError as e:
-                err(0, i)
+                err(0,i)
             except ZeroDivisionError:
                 print('Cannot divide by zero')
             except TypeError as e:
@@ -74,3 +76,4 @@ def main(argv):
                 print(e)
             except AttributeError as e:
                 print(e)
+

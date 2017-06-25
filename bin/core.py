@@ -3,11 +3,9 @@ from importlib import import_module as _import
 from bin.common import *
 from bin.vfs import init
 
-
 class shell():
     def __init__(self):
         init()
-
     def __repr__(self):
         return '<Shell Instance>'
 
@@ -19,8 +17,12 @@ class shell():
     def execute(self, inp):
         inp = inp.split()
         f_list = get_func_list()
+        # add hidden command
+        f_list.append('set')
+        #end add extras
         try:
             f = inp[0]
+            inp.pop(0)
         except IndexError:
             return
         if f in f_list:
@@ -34,13 +36,13 @@ class shell():
                 except TypeError:
                     err(1)
             except AttributeError:
-                err(1, f)
+                err(1,f)
         elif f not in f_list:
-            analyze(inp)
-
+            analyze(f)
+        
     def start(self):
         print('Starting Shell...\n')
-        # write config file
+        #write config file
         write_config()
         sleep(1)
         print('Running...\n')

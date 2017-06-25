@@ -1,7 +1,6 @@
 # type command prints file contents
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: type (file)
@@ -10,15 +9,18 @@ print content of (file)
 '''
     print(usage)
 
-
 def main(argv):
-    if len(argv) < 2 or '-h' in argv:
+    if len(argv) < 1 or '-h' in argv:
         _help()
         return
-    argv.pop(0)
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    # argv.pop(0)
     argv = make_s(argv)
 
-    path = get_path() + argv
+    path = get_path()+argv
     if os.path.isfile(path):
         with open(path) as f:
             data = f.readlines()
@@ -29,4 +31,4 @@ def main(argv):
     elif os.path.isdir(path):
         err(3, add=argv + ' is a directory')
     else:
-        err(2, path)
+        err(2,path)

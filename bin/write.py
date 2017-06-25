@@ -1,7 +1,6 @@
 # write function
 from bin.common import *
 
-
 def _help():
     usage = '''
 Usage: write (filename)
@@ -21,14 +20,17 @@ While in write mode use
 '''
     print(usage)
 
-
 def main(argv):
-    if len(argv) < 2 or '-h' in argv:
+    if len(argv) < 1 or '-h' in argv:
         _help()
         return
 
-    argv.pop(0)
-
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    # argv.pop(0)
+    
     if '-r' in argv:
         argv.pop(0)
         path = get_path() + make_s(argv)
@@ -37,7 +39,8 @@ def main(argv):
                 pass
             print('Writing over "', make_s(argv), '" file', sep='')
         except IOError:
-            print('Error[4]: Cant write into a directory')
+            err(3, add='Cant write into a directory')
+            return
 
     path = get_path() + make_s(argv)
     s = 'write>'
@@ -50,12 +53,11 @@ def main(argv):
                 elif '-show' in inp:
                     f.close()
                     _show(path)
-                    f = open(path, 'a')
+                    f = open(path,'a')
                 else:
                     print(inp, file=f)
     except IOError:
-        print('Error[4]: Cant write into a directory')
-
+        err(3, add='Cant write into a directory')
 
 def _show(path):
     with open(path) as f:
@@ -63,3 +65,4 @@ def _show(path):
     print('_________________<START>_________________\n')
     print(make_s2(data))
     print('__________________<END>__________________\n')
+
