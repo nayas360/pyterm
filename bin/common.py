@@ -239,6 +239,19 @@ def analyze(inp):
 
     try:
         exec('from math import *')
+        # math func inp catcher
+        # to prevent builtins msg disp
+        if inp in dir():
+            print('"', inp, '" is a mathematical function', sep='')
+            return
+        # math func lister__________
+        if inp == '--math':
+            d = dir()
+            d.remove('__doc__')
+            d.remove('inp')
+            for i in sorted(d):
+                print(i)
+            return
         e = eval(inp)
         if e != None:
             print(e)

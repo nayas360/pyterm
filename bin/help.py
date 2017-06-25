@@ -13,14 +13,17 @@ u = '''
 
 => Enter mathematical
    expressions directly into the
-   shell to evaluate them.
+   shell to evaluate them. Also
+   you can issue a special keyword
+   "--math" to list the supported 
+   mathematical functions.
 
 => Issue "exit" to exit the shell
 '''
 
 v = '''
 [version]
-v1.9
+v1.9a
 
 [author]
 Sayan Dutta
