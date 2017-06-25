@@ -90,7 +90,8 @@ def err(n, inp=None, add=None):
     else:
         print('Invalid Error code')
 
-#Path functions_________________________
+
+# Manager functions______________________
 
 # config path
 c_path = 'lib/.configs'
@@ -105,7 +106,7 @@ def get_func_list():
         f.append(i[:-3])
     # functions that are excepted
     # but should not be so append
-    # them here
+    # them
     f.append('exit')
     f.append('help')
     f.append('mkdir')
@@ -154,7 +155,19 @@ class property_manager:
 
 # Property manager instance
 prop = property_manager('Property')
-    
+
+
+# algorithm to replace vars with values
+def replace_vars(argv):
+    for i in range(len(argv)):
+        var = argv[i]
+        v = var.replace('%', '')
+        if '%' in var and v in prop.vars():
+            # print(i, var, v)
+            argv.pop(i)
+            argv.insert(i, prop.get(v))
+    return argv
+
 
 def write_config():
     #built in check safe
@@ -166,6 +179,9 @@ def write_config():
         config['Property'] = {'save_state': '0'}
         with open(c_path, 'w') as configs:
             config.write(configs)
+
+
+# Path functions_________________________
 
 def get_path():
     __doc__='''
@@ -213,7 +229,7 @@ def get_prv_path():
     returns path as a string.'''
     path = get_path()
     last = get_last_path(path) + '/'
-    path =path[:-len(last)]
+    path = path[:-len(last)]
     return path
 
 def get_prv_path2(path):
@@ -222,7 +238,7 @@ def get_prv_path2(path):
     of the path given as argument.
     returns path as string.'''
     last = get_last_path(path) + '/'
-    path =path[:-len(last)]
+    path = path[:-len(last)]
     return path
 
 
@@ -249,6 +265,7 @@ def get_args(inp):
         return []
     return [old,new]
 
+
 def isValid(inp):
     __doc__ = '''Checks for valid input'''
     exceptsFile='lib/.exception'
@@ -270,7 +287,7 @@ def analyze(inp):
     # so next line is not required
     # inp=make_s(inp)
     # print(inp)
-    # check if is a directory
+    #check if is a directory
     if os.path.isdir(get_path()+inp):
         if '.' in inp:
             err(0, inp)
@@ -292,7 +309,7 @@ def analyze(inp):
         if inp in dir():
             print('"', inp, '" is a mathematical function', sep='')
             return
-        # add true and false
+        #add true and false
         exec('true,false=True,False')
         # math func lister__________
         if inp == '--math':

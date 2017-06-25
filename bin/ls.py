@@ -10,7 +10,10 @@ Usage: ls [options] [dir]
                 including hidden
                 ones
 [dir]           lists items in (dir)
-                directory'''
+                directory
+
+Use '%' in front of global vars
+to use this value as for name.'''
     print(usage)
 
 def main(argv):
@@ -31,10 +34,14 @@ def main(argv):
         # anymore
         # argv.pop(0)
         # argv.remove('-d')
-        if make_s(argv) in prop.vars():
-            path = get_path() + prop.get(make_s(argv))
-        else:
-            path = get_path() + make_s(argv)
+
+        # The shell does the work of replacing
+        # vars already. Code segment below
+        # is not required anymore.
+        # if '%' in make_s(argv): #in prop.vars():
+        # path=get_path()+make_s(replace_vars(argv))
+        # else:
+        path = get_path() + make_s(argv)
     else:
         path = get_path()
     

@@ -22,6 +22,10 @@ class shell():
 
     def execute(self, inp):
         inp = inp.split()
+        # print(inp)
+        inp = make_s(replace_vars(inp))
+        inp = inp.split()
+        # print(inp)
         f_list = get_func_list()
         #add hidden command
         f_list.append('set')

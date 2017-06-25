@@ -9,7 +9,7 @@ Usage: set [options] (var) [value]
 -h                Print this help.
 -vars             Lists all declared
                   variables.
--del-var (var)    Delete variable
+-del (var)        Delete variable
                   (var) if defined.
 
 where (var) is a valid
@@ -34,12 +34,12 @@ def main(argv):
         for i in prop.vars():
             print(i)
         return
-    if '-del-var' in argv:
+    if '-del' in argv:
         try:
             var = argv[1]
             #detect system vars
             if var == 'save_state':
-                err(4, add='cant delete system variable' + var+'"')
+                err(4, add='Cant delete system variable "' + var + '"')
                 return
             prop.delete(var)
             return
@@ -61,4 +61,7 @@ def main(argv):
     argv.pop(0)
     # make the rest the val
     val = make_s(argv)
-    prop.set(var,val)
+    try:
+        prop.set(var, val)
+    except ValueError:
+        err(4, add="can't create this variable")

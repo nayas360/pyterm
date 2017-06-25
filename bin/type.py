@@ -5,7 +5,12 @@ def _help():
     usage = '''
 Usage: type (file)
 
-print content of (file)
+Print content of (file)
+
+Use '%' in front of global
+vars to use value as file
+name.
+
 '''
     print(usage)
 
@@ -18,6 +23,11 @@ def main(argv):
     # so the next line is not needed
     # anymore
     # argv.pop(0)
+
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # argv=replace_vars(argv)
     argv = make_s(argv)
 
     path = get_path()+argv

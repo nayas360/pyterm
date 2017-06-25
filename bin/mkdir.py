@@ -11,6 +11,12 @@ def main(argv):
     # so the next line is not needed
     # anymore
     # argv.pop(0)
+
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # argv=replace_vars(argv)
+
     if make_s(argv) in ('.', '..', '-'):
         err(2, add='invalid directory name')
         return
@@ -37,5 +43,9 @@ Where (dir) is the
     name of the new
     directory to be
     created.
+
+Use '%' in front of
+global vars to use
+their value as dir name.
 '''
     print(usage)

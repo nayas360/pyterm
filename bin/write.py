@@ -14,6 +14,10 @@ file will be created.
               original file.
               All data is lost.
 
+Use '%' in front of global
+vars to use the value as
+the file name.
+
 While in write mode use
 "-exit" to exit write mode
 "-show" to see file contents
@@ -30,6 +34,12 @@ def main(argv):
     # so the next line is not needed
     # anymore
     # argv.pop(0)
+
+    # replace the vars
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # argv = replace_vars(argv)
     
     if '-r' in argv:
         argv.pop(0)

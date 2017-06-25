@@ -8,6 +8,10 @@ Where (path) refers to the
 path to where directory has
 to be changed to.
 
+use '%' in front of global
+variables to pass their
+values.
+
 use -cur as argument
 to JUST print the
 current path.
@@ -48,15 +52,19 @@ def main(argv):
         if make_s(argv) in os.listdir(get_path()) or get_last_path(path) in os.listdir(get_prv_path2(path)):
             goto(path)
             return
-        elif make_s(argv) in prop.vars():
-            arg = prop.get(make_s(argv))
-            path = get_path()+arg
-            if arg in os.listdir(get_path()) or get_last_path(path) in os.listdir(get_prv_path2(path)):
-                goto(path)
-                return
-            else:
-                err(2,path)
-                return
+            # The shell does the work of replacing
+            # vars already. Code segment below
+            # is not required anymore.
+            # elif '%' in  make_s(argv): #in prop.vars():
+            # arg=prop.get(make_s(argv))
+            # arg=replace_vars(argv)
+            # path=get_path()+make_s(arg)
+            # if arg in os.listdir(get_path()) or get_last_path(path) in os.listdir(get_prv_path2(path)):
+            # goto(path)
+            # return
+            # else:
+            # err(2,path)
+            # return
         else:
             err(2,path)
             return

@@ -7,6 +7,10 @@ Usage: copy (from) (to)
 
 where (from) (to)
 are valid paths.
+
+Use '%' in front of
+global vars to use
+their values.
 '''
     print(usage)
 
@@ -16,6 +20,11 @@ def main(argv):
         return
 
     args = get_args(argv)
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # args = replace_vars(args)
+    
     try:
         _from = get_path() + args[0]
         _to = get_path() + args[1]
@@ -32,14 +41,14 @@ def main(argv):
     try:
         with open(_from) as f:
             data = f.readlines()
-    except OSError:
+    except IOError:
         err(2, add='"' + os.path.basename(_from) + '" coud not be copied')
         return
 
     try:
         with open(_to + '/' + os.path.basename(args[0]), 'w') as f:
             [print(i, file=f) for i in data]
-    except OSError:
+    except IOError:
         err(2, add='"' + os.path.basename(_from) + '" could not be copied')
         return
         #os.remove(_from)

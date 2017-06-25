@@ -1,5 +1,5 @@
 # echo function
-from lib.utils import make_s, prop
+from lib.utils import make_s, prop, replace_vars
 
 def _help():
     usage = '''
@@ -7,10 +7,15 @@ Usage: echo [options] <string>
 
 [options]:
 -h                Print this help.
--globals          Global vars in the
-                  string will be
-                  repaced with its
+-all              All Global vars
+                  in the string will
+                  be replaced with its
                   values.
+
+Use '%' in front of vars to replace
+only that var with value.
+eg. echo Value of prompt is %prompt
+will echo value of prompt
 '''
     print(usage)
 
@@ -25,21 +30,31 @@ def main(argv):
     # argv.pop(0)
 
     # if usage of global vars is enabled
-    if '-globals' in argv:
-        argv.remove('-globals')
+    if '-all' in argv:
+        argv.remove('-all')
         if argv == []:
             _help()
             return
         # search and replace vars wid values
         for i in range(len(argv)):
-            if argv[i] in prop.vars():
-                # print(i,argv[i])
-                var = argv[i]
+            var = argv[i]
+            if var in prop.vars():
+                #print(i,argv[i])
                 argv.pop(i)
                 argv.insert(i, prop.get(var))
+
+    # new algorithm for detecting global vars
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # argv=replace_vars(argv)
+
     # make the string
     s = make_s(argv)
-
+    # for detecting escape sequences
+    if '\\n' in s:
+        s = s.replace('\\n', '\n')
+    # for inserting blank line
     if s == '.':
         s = ' '
     print(s)

@@ -34,7 +34,7 @@ def main(argv):
         # so the next line is not needed
         # anymore
         # argv.pop(0)#remove com name
-        argv.pop(0)  # remove arg
+        argv.pop(0)  #remove arg
         try:
             arg = argv[0]
             if arg.isupper():

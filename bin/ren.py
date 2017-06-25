@@ -22,12 +22,16 @@ def main(argv):
     # anymore
     # argv.pop(0)
     args = get_args(argv)
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # args=replace_vars(args)
     # print(args)
     if len(args) < 2:
         _help()
         return
     old = get_path() + args[0]
-    new = get_path() +args[1]
+    new = get_path() + args[1]
     try:
         os.rename(old,new)
     except OSError:

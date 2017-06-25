@@ -11,6 +11,12 @@ def main(argv):
     # so the next line is not needed
     # anymore
     # argv.pop(0)
+
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # argv=replace_vars(argv)
+
     path = get_path() + '/' + make_s(argv)
     try:
         if os.listdir(path[:-len(os.path.basename(path))]) in (os.listdir('lib'), os.listdir('bin'), os.listdir()):
