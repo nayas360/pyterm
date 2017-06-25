@@ -37,7 +37,7 @@ def main(argv):
         try:
             var = argv[1]
             #detect system vars
-            if var == 'save_state':
+            if var == 'save_state' or var == 'c_char':
                 err(4, add='Cant delete system variable "' + var+'"')
                 return
             prop.delete(var)

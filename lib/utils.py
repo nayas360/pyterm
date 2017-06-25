@@ -145,7 +145,7 @@ class property_manager:
     def delete(self, var):
         config = cp.ConfigParser()
         config.read(c_path)
-        section = 'Property'
+        section='Property'
         if config.has_option(section,var):
             config.remove_option(section,var)
         with open(c_path,'w') as configs:
@@ -161,10 +161,13 @@ prop = property_manager('Property')
 
 #algorithm to replace vars with values
 def replace_vars(argv):
+    if prop.get('c_char') != NULL:
+        c_char = prop.get('c_char')
+    else: c_char = '%'
     for i in range(len(argv)):
         var = argv[i]
-        v = var.replace('%', '')
-        if '%' in var and v in prop.vars():
+        v = var.replace(c_char, '')
+        if c_char in var and v in prop.vars():
             #print(i, var, v)
             argv.pop(i)
             argv.insert(i,prop.get(v))
@@ -283,7 +286,7 @@ def analyze(inp):
     Basic function to analyze
     the input for other expressions
     returns None'''
-    # The shell doesnt send the command
+    #The shell doesnt send the command
     #name in arg list anymore
     #so next line is not required
     #inp=make_s(inp)

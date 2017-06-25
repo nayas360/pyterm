@@ -6,4 +6,5 @@ save_state = 0
 prompt = -def
 exit = exit -t 0
 secho = fwd echo
+c_char = $
 

@@ -24,7 +24,7 @@ def main(argv):
         _help()
         return
     # The shell doesnt send the
-    # command name in the arg list
+    #command name in the arg list
     #so the next line is not needed
     #anymore
     #argv.pop(0)
@@ -47,8 +47,8 @@ def main(argv):
     # The shell does the work of replacing
     # vars already. Code segment below
     # is not required anymore.
-    # argv=replace_vars(argv)
-
+    #argv=replace_vars(argv)
+            
     #make the string
     if len(argv) != 0:
         s = make_s(argv)
