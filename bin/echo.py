@@ -20,13 +20,13 @@ will echo value of prompt
     print(usage)
 
 def main(argv):
-    if len(argv) < 1 or '-h' in argv:
+    if '-h' in argv:
         _help()
         return
     # The shell doesnt send the
     # command name in the arg list
     # so the next line is not needed
-    # anymore
+    #anymore
     #argv.pop(0)
 
     #if usage of global vars is enabled
@@ -50,11 +50,13 @@ def main(argv):
     # argv=replace_vars(argv)
 
     # make the string
-    s = make_s(argv)
+    if len(argv) != 0:
+        s = make_s(argv)
+    else:
+        # insert blanks if argv is empty
+        s=' '
     #for detecting escape sequences
     if '\\n' in s:
-        s = s.replace('\\n', '\n')
-    # for inserting blank line
-    if s == '.':
-        s=' '
+        s = s.replace('\\n','\n')
+
     print(s)

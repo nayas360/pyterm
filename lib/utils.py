@@ -78,7 +78,7 @@ def err(n, inp=None, add=None):
         else:
             print('Error[4]: undefined variable')
         return
-    # prototype declaration
+    #prototype declaration
     elif n==5:
         if inp!=None:
             pass
@@ -90,13 +90,11 @@ def err(n, inp=None, add=None):
     else:
         print('Invalid Error code')
 
-
 #Manager functions______________________
 
 # config path
 c_path = 'lib/.configs'
-NULL = 'NULL'
-
+NULL='NULL'
 
 def get_func_list(hidden=False):
     func = os.listdir('bin/')
@@ -137,10 +135,9 @@ class property_manager:
         # universal set prop method
         config = cp.ConfigParser()
         config.read(c_path)
-        config.set(self.section, var, val)
+        config.set(self.section,var,val)
         with open(c_path,'w') as configs:
             config.write(configs)
-
     def vars(self):
         config = cp.ConfigParser()
         config.read(c_path)
@@ -151,7 +148,7 @@ class property_manager:
         config.read(c_path)
         section = 'Property'
         if config.has_option(section, var):
-            config.remove_option(section, var)
+            config.remove_option(section,var)
         with open(c_path,'w') as configs:
             config.write(configs)
         
@@ -162,7 +159,6 @@ class property_manager:
 
 # Property manager instance
 prop = property_manager('Property')
-
 
 #algorithm to replace vars with values
 def replace_vars(argv):
@@ -183,10 +179,9 @@ def write_config():
         # path is reserved
         config['RESERVED'] = {'path': 'root/'}
         # global vars is property
-        config['Property'] = {'save_state': '0'}
+        config['Property'] = {'save_state':'0'}
         with open(c_path,'w') as configs:
             config.write(configs)
-
 
 #Path functions_________________________
 
@@ -235,7 +230,7 @@ def get_prv_path():
     of the current directory.
     returns path as a string.'''
     path = get_path()
-    last = get_last_path(path) + '/'
+    last = get_last_path(path)+'/'
     path=path[:-len(last)]
     return path
 
@@ -244,7 +239,7 @@ def get_prv_path2(path):
     Gets the previous path
     of the path given as argument.
     returns path as string.'''
-    last = get_last_path(path) + '/'
+    last = get_last_path(path)+'/'
     path=path[:-len(last)]
     return path
 
@@ -291,18 +286,18 @@ def analyze(inp):
     returns None'''
     # The shell doesnt send the command
     # name in arg list anymore
-    # so next line is not required
+    #so next line is not required
     #inp=make_s(inp)
     #print(inp)
     #check if is a directory
     if os.path.isdir(get_path()+inp):
         if '.' in inp:
-            err(0, inp)
+            err(0,inp)
             return
         print('"', inp, '" is a directory', sep='')
         return
     elif os.path.isfile(get_path() + inp):
-        print('"', inp,'" is a file',sep='')
+        print('"', inp, '" is a file',sep='')
         return
     #check if is a valid input
     if isValid(inp) or 'inp' in inp:
@@ -318,7 +313,7 @@ def analyze(inp):
             return
         #add true and false
         exec('true,false=True,False')
-        # math func lister__________
+        #math func lister__________
         if inp =='--math':
             d=dir()
             d.remove('__doc__')

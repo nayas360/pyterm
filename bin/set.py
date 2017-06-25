@@ -51,7 +51,7 @@ def main(argv):
 
     if len(argv) < 2:
         val = prop.get(var)
-        if val == NULL:
+        if val ==NULL:
             err(4,var)
             return
         print(val)          

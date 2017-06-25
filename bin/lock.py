@@ -16,7 +16,7 @@ def main(argv):
         _help()
         return
     # The shell doesnt send the
-    # command name in the arg list
+    #command name in the arg list
     #so the next line is not needed
     #anymore
     #argv.pop(0)
