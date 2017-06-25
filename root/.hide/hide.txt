@@ -1,0 +1,18 @@
+This is a hidden dirextory
+
+it also contains an hidden file
+.hidden.txt
+
+You can create hidden files
+by adding an '.' before the
+filename.
+eg. if you want to create a file
+"spam.txt" which you want to be hidden
+you can do :-
+mkdir .spam.txt
+
+thats it!
+
+and to view hidden files do
+ls -a
+bye....
