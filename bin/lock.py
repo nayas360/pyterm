@@ -1,6 +1,6 @@
 # test lock shell
-import getpass
-import hashlib
+from bin.common import *
+import hashlib, getpass
 
 
 def _help():

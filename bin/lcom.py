@@ -2,14 +2,15 @@
 
 from bin.common import *
 
+
 def _help():
-    usage = '''
-Usage: help [options]
+    usage = '''Usage: help [options]
 
 -h            Print this help
 -s (char)     Print Commands starting
               with (char).'''
     print(usage)
+
 
 def main(argv):
     if '-h' in argv:

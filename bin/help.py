@@ -20,7 +20,7 @@ u = '''
 
 v = '''
 [version]
-v1.8a
+v1.9
 
 [author]
 Sayan Dutta
@@ -47,6 +47,7 @@ h = '''Usage: help [options]
 -h            Print this msg
 '''
 
+
 def main(argv):
     if '-h' in argv:
         print(h)
@@ -60,4 +61,4 @@ def main(argv):
     if '-help' in argv:
         print(u)
         return
-    print(i, v, u)
+    print(i, u, v)

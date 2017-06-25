@@ -2,12 +2,13 @@
 from importlib import import_module as _import
 from bin.common import *
 
+
 class shell():
     def __repr__(self):
         return '<Shell Instance>'
 
     def get_input(self):
-        sh = '@shell:' + get_path() + '>'
+        sh = '@shell:' + get_path() + '> '
         inp = input(sh)
         return inp
 

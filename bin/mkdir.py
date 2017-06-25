@@ -2,6 +2,7 @@
 
 from bin.common import *
 
+
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
         _help()
@@ -17,6 +18,7 @@ def main(argv):
         return
     print('"', argv[0], '" directory created', sep='')
     # print('Path:',path)
+
 
 def _help():
     usage = '''Usage: mkdir (dir)

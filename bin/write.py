@@ -1,6 +1,7 @@
 # write function
 from bin.common import *
 
+
 def _help():
     usage = '''
 Usage: write (filename)
@@ -19,6 +20,7 @@ While in write mode use
 "-show" to see file contents
 '''
     print(usage)
+
 
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
@@ -54,10 +56,10 @@ def main(argv):
     except IOError:
         print('Error[4]: Cant write into a directory')
 
+
 def _show(path):
     with open(path) as f:
         data = f.readlines()
     print('_________________<START>_________________\n')
     print(make_s2(data))
     print('__________________<END>__________________\n')
-

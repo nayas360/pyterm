@@ -87,6 +87,7 @@ def err(n, inp=None, add=None):
 # config path
 c_path = 'bin/.configs'
 
+
 def get_func_list():
     func = os.listdir('bin/')
     for i in range(len(func)):
@@ -96,8 +97,9 @@ def get_func_list():
            'core',
            'common',
            '.conf',
-           '.last_tmp'
-           '.except']
+           '.last_tmp',
+           '.except',
+           'lock.']
     for i in rem:
         try:
             func.remove(i)
@@ -105,11 +107,13 @@ def get_func_list():
             continue
     return sorted(func)
 
+
 def write_config():
     config = cp.ConfigParser()
     config['prop'] = {'path': 'root/'}
     with open(c_path, 'w') as configs:
         config.write(configs)
+
 
 def get_path():
     __doc__ = '''
@@ -121,6 +125,7 @@ def get_path():
     config.read(c_path)
     path = config['prop']['path']
     return path
+
 
 def set_path(path):
     __doc__ = '''
@@ -134,6 +139,7 @@ def set_path(path):
     config.set('prop', 'path', path)
     with open(c_path, 'w') as configs:
         config.write(configs)
+
 
 def get_last_path(path):
     __doc__ = '''
@@ -154,6 +160,7 @@ def get_last_path(path):
     last = make_s2(list(reversed(last)))
     return last
 
+
 def get_prv_path():
     __doc__ = '''
     Gets the previous path
@@ -163,6 +170,7 @@ def get_prv_path():
     last = get_last_path(path) + '/'
     path = path[:-len(last)]
     return path
+
 
 def get_prv_path2(path):
     __doc__ = '''
@@ -174,8 +182,7 @@ def get_prv_path2(path):
     return path
 
 
-
-#Others_________________________________
+# Others_________________________________
 def get_args(inp):
     __doc__ = '''
     Gets the arguments seperated
@@ -197,17 +204,18 @@ def get_args(inp):
         return []
     return [old, new]
 
+
 def isValid(inp):
-    __doc__ = '''
-Checks for valid input'''
+    __doc__ = '''Checks for valid input'''
 
     with open('bin/.exception') as exc:
         excepts = exc.readlines()
-    # excepts[0]
-    for i in range(len(excepts)):
-        if excepts[i][:-2] in inp:
-            return False
-    return True
+    for i in excepts:
+        # print(r'%s'%i)
+        if i[:-1] in inp:
+            return True
+    return False
+
 
 def analyze(inp):
     __doc__ = '''
@@ -216,11 +224,19 @@ def analyze(inp):
     returns None'''
 
     inp = make_s(inp)
-
-    if not isValid(inp) or 'inp' in inp:
+    # print(inp)
+    # check if is a directory
+    if os.path.isdir(get_path() + inp):
+        print('"', inp, '" is a directory', sep='')
+        return
+    elif os.path.isfile(get_path() + inp):
+        print('"', inp, '" is a file', sep='')
+        return
+    # check if is a valid input
+    if isValid(inp) or 'inp' in inp:
         err(0, inp)
         return
-        
+
     try:
         exec('from math import *')
         e = eval(inp)

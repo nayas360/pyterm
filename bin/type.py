@@ -1,6 +1,7 @@
 # type command prints file contents
 from bin.common import *
 
+
 def _help():
     usage = '''
 Usage: type (file)
@@ -8,6 +9,7 @@ Usage: type (file)
 print content of (file)
 '''
     print(usage)
+
 
 def main(argv):
     if len(argv) < 2 or '-h' in argv:

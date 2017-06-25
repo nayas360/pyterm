@@ -2,6 +2,7 @@
 from importlib import import_module as _import
 from bin.common import *
 
+
 def _help():
     usage = '''
 Usage: run (file)
@@ -12,6 +13,7 @@ script file
 -h            Print this help
 '''
     print(usage)
+
 
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
@@ -33,7 +35,7 @@ def main(argv):
     # if is file read data
     with open(path) as f:
         data = f.readlines()
-    #Now try executing each line
+    # Now try executing each line
     for i in data:
         i = i.split()
         f_list = get_func_list()
@@ -72,4 +74,3 @@ def main(argv):
                 print(e)
             except AttributeError as e:
                 print(e)
-

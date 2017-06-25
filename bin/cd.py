@@ -1,6 +1,7 @@
 # cd change directory command
 from bin.common import *
 
+
 def _help():
     usage = '''Usage: cd (path)
 
@@ -13,6 +14,7 @@ to JUST print the
 current path.
 '''
     print(usage)
+
 
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
@@ -48,6 +50,7 @@ def main(argv):
             return
     except OSError:
         err(2, path[:-1])
+
 
 def goto(path):
     if os.path.isfile(path[:-1]):

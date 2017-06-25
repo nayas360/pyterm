@@ -1,6 +1,7 @@
 # sleep command
 from bin.common import *
 
+
 def _help():
     usage = '''
 Usage: sleep (int)
@@ -11,6 +12,7 @@ in seconds
 -h            Print this help
 '''
     print(usage)
+
 
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
