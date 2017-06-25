@@ -19,7 +19,7 @@ def main(argv):
     # The shell doesnt send the
     # command name in the arg list
     # so the next line is not needed
-    # anymore
+    #anymore
     #argv.pop(0)
     try:
         t = int(make_s(argv))

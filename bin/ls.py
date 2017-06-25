@@ -37,16 +37,16 @@ def main(argv):
             path = get_path() + make_s(argv)
     else:
         path = get_path()
-
+    
     if os.path.isfile(path):
         err(2, add='Cant list a file')
         return
     try:
         if os.listdir(path) in (os.listdir('lib'), os.listdir('bin'), os.listdir()):
-            err(2, path)
+            err(2,path)
             return
     except OSError:
-        err(2, path)
+        err(2,path)
         return
     
     if ALL:
@@ -76,6 +76,6 @@ def pprint2(path):
         print('Empty directory')
         return
     for i in sorted(l):
-        if i[0] == '.':
+        if i[0]=='.':
             continue
         print(i)

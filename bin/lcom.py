@@ -22,14 +22,15 @@ def main(argv):
         # so the next line is not needed
         # anymore
         # argv.pop(0)#remove com name
-        argv.pop(0)  #remove arg
+        argv.remove("-s")  # argv.pop(0)#remove arg
+        #print(str(argv[0]))
         try:
-            arg = make_s2(argv[0])
+            arg = str(argv[0])
             if arg.isupper():
                 arg = arg.lower()
             print('Section:', arg.upper())
             for i in f:
-                if i[0] == arg:
+                if i[0]==arg:
                     print('    ==>',i)
             return
         except IndexError:

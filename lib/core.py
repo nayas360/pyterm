@@ -23,7 +23,7 @@ class shell():
     def execute(self, inp):
         inp = inp.split()
         f_list = get_func_list()
-        # add hidden command
+        #add hidden command
         f_list.append('set')
         #end add extras
         try:

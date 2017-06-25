@@ -33,7 +33,7 @@ def main(argv):
     if inp not in os.listdir(get_path()):
         err(2,path)
         return
-
+    
     #if is file read data
     with open(path) as f:
         data = f.readlines()

@@ -28,7 +28,7 @@ def main(argv):
     if os.path.isfile(_to):
         err(2, add='cant move into a file')
         return
-    # print(_from,_to)
+    #print(_from,_to)
     try:
         with open(_from) as f:
             data = f.readlines()

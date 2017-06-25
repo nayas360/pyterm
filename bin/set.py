@@ -37,9 +37,9 @@ def main(argv):
     if '-del-var' in argv:
         try:
             var = argv[1]
-            # detect system vars
+            #detect system vars
             if var == 'save_state':
-                err(4, add='cant delete system variable' + var + '"')
+                err(4, add='cant delete system variable' + var+'"')
                 return
             prop.delete(var)
             return
@@ -52,12 +52,12 @@ def main(argv):
     if len(argv) < 2:
         val = prop.get(var)
         if val == 'err':
-            err(4, var)
+            err(4,var)
         print(val)
         return
 
-    # remove name of var
+    #remove name of var
     argv.pop(0)
     # make the rest the val
     val = make_s(argv)
-    prop.set(var, val)
+    prop.set(var,val)

@@ -50,12 +50,12 @@ def main(argv):
             return
         elif make_s(argv) in prop.vars():
             arg = prop.get(make_s(argv))
-            path = get_path() + arg
+            path = get_path()+arg
             if arg in os.listdir(get_path()) or get_last_path(path) in os.listdir(get_prv_path2(path)):
                 goto(path)
                 return
             else:
-                err(2, path)
+                err(2,path)
                 return
         else:
             err(2,path)

@@ -5,7 +5,7 @@ from zipfile import ZipFile
 root = 'root/'
 fname = 'FileSystem.fs'
 LEVEL = 8  # compression level 0 or 8 only
-CMP64 = True  # 64 bit compression
+CMP64 = True  #64 bit compression
 
 def init():
     if fname not in os.listdir():
