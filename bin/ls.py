@@ -1,15 +1,15 @@
 # ls command
-from bin.common import *
+from lib.utils import *
 
 def _help():
     usage = '''
-Usage: ls [options]
+Usage: ls [options] [dir]
 
 [options]:
 -a              shows all files
                 including hidden
                 ones
--d (dir)        lists items in (dir)
+[dir]           lists items in (dir)
                 directory'''
     print(usage)
 
@@ -24,13 +24,13 @@ def main(argv):
     else:
         ALL = False
 
-    if '-d' in argv:
+    if len(argv) != 0:  # '-d' in argv:
         # The shell doesnt send the
         # command name in the arg list
         # so the next line is not needed
         # anymore
         # argv.pop(0)
-        argv.remove('-d')
+        # argv.remove('-d')
         if make_s(argv) in prop.vars():
             path = get_path() + prop.get(make_s(argv))
         else:
@@ -41,7 +41,11 @@ def main(argv):
     if os.path.isfile(path):
         err(2, add='Cant list a file')
         return
-    if os.listdir(path) in (os.listdir('bin'), os.listdir()):
+    try:
+        if os.listdir(path) in (os.listdir('lib'), os.listdir('bin'), os.listdir()):
+            err(2, path)
+            return
+    except OSError:
         err(2, path)
         return
     
@@ -72,6 +76,6 @@ def pprint2(path):
         print('Empty directory')
         return
     for i in sorted(l):
-        if i[0] =='.':
+        if i[0] == '.':
             continue
         print(i)

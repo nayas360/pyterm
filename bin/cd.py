@@ -1,5 +1,5 @@
 # cd change directory command
-from bin.common import *
+from lib.utils import *
 
 def _help():
     usage = '''Usage: cd (path)
@@ -37,6 +37,9 @@ def main(argv):
         return
 
     if './' in argv:
+        if prop.get('path') == 'root/':
+            print('Already in root/')
+            return
         path = 'root/'
         goto(path)
         return
@@ -64,7 +67,7 @@ def goto(path):
     if os.path.isfile(path):
         err(2, add='Cant cd into a file')
         return
-    if os.listdir(path) in (os.listdir('bin'), os.listdir()):
+    if os.listdir(path) in (os.listdir('lib'), os.listdir('bin'), os.listdir()):
         err(2,path)
         return
     set_path(path)

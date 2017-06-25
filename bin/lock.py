@@ -1,5 +1,5 @@
 # test lock shell
-from bin.common import *
+from lib.utils import *
 import hashlib, getpass
 
 def _help():

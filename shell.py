@@ -1,5 +1,5 @@
 # Shell prototype
-from bin.core import *
+from lib.core import *
 
 P = 'sdcard/com.hipipal.qpyplus/projects3/shell'
 try:

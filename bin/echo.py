@@ -1,5 +1,5 @@
 # echo function
-from bin.common import make_s
+from lib.utils import make_s
 
 def main(argv):
     if len(argv) < 1 or '-h' in argv:

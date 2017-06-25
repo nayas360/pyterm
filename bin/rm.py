@@ -1,6 +1,6 @@
 # rm remove/delete command
 
-from bin.common import *
+from lib.utils import *
 
 def main(argv):
     if len(argv) < 1 or '-h' in argv:
@@ -12,6 +12,12 @@ def main(argv):
     # anymore
     # argv.pop(0)
     path = get_path() + '/' + make_s(argv)
+    try:
+        if os.listdir(path[:-len(os.path.basename(path))]) in (os.listdir('lib'), os.listdir('bin'), os.listdir()):
+            err(2)
+            return
+    except:
+        pass
     try:
         os.remove(path)
     except OSError:

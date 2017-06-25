@@ -1,6 +1,6 @@
 # run function
 from importlib import import_module as _import
-from bin.common import *
+from lib.utils import *
 
 def _help():
     usage = '''

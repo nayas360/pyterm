@@ -1,6 +1,6 @@
 # Exit function
-from bin.common import sleep, prop, set_path
-from bin.vfs import cleanup
+from lib.utils import sleep, prop, set_path
+from lib.vfs import cleanup
 from sys import exit
 
 def _help():
@@ -34,7 +34,6 @@ def main(argv):
             print('You forgot to give the time...')
             print('Exiting with default time...')
     die()
-
 
 def die(t=2):
     print('Stopping Shell...')

@@ -1,6 +1,6 @@
 # speak command speak input
 import time
-from bin.common import *
+from lib.utils import *
 
 def _help():
     usage = '''

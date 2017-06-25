@@ -1,10 +1,5 @@
 __init__.py
 __pycache__
-core.py
-vfs.py
-common.py
-.configs
-.exception
 .last_tmp.py
 lock.key
 os

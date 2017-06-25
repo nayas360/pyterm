@@ -1,5 +1,5 @@
 # ren rename command
-from bin.common import *
+from lib.utils import *
 
 def _help():
     usage = '''
