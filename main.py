@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # Shell prototype
 from lib.core import *
 
