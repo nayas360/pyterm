@@ -1,6 +1,7 @@
 # set command to set global variables
 from lib.utils import *
 
+
 def _help():
     usage = '''
 Usage: set [options] (var) [value]
@@ -17,6 +18,7 @@ if [value] is not given,
 current value is returned
 '''
     print(usage)
+
 
 def main(argv):
     if '-h' in argv:
@@ -36,9 +38,9 @@ def main(argv):
     if '-del' in argv:
         try:
             var = argv[1]
-            #detect system vars
+            # detect system vars
             if var == 'save_state' or var == 'c_char':
-                err(4, add='Cant delete system variable "' + var+'"')
+                err(4, add='Cant delete system variable "' + var + '"')
                 return
             prop.delete(var)
             return
@@ -50,17 +52,17 @@ def main(argv):
 
     if len(argv) < 2:
         val = prop.get(var)
-        if val ==NULL:
-            err(4,var)
+        if val == NULL:
+            err(4, var)
             return
-        print(val)          
+        print(val)
         return
 
-    #remove name of var
+    # remove name of var
     argv.pop(0)
     # make the rest the val
     val = make_s(argv)
     try:
-        prop.set(var,val)
+        prop.set(var, val)
     except ValueError:
         err(4, add="can't create this variable")

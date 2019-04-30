@@ -2,6 +2,7 @@
 
 from lib.utils import *
 
+
 def main(argv):
     if len(argv) < 1 or '-h' in argv:
         _help()
@@ -27,14 +28,15 @@ def main(argv):
             return
     except:
         pass
-    
+
     try:
         os.mkdir(path)
     except OSError:
-        print('"', argv[0], '" directory already exsists',sep='')
+        print('"', argv[0], '" directory already exsists', sep='')
         return
-    print('"', argv[0], '" directory created',sep='')
-    #print('Path:',path)
+    print('"', argv[0], '" directory created', sep='')
+    # print('Path:',path)
+
 
 def _help():
     usage = '''Usage: mkdir (dir)

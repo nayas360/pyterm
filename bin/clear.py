@@ -2,10 +2,12 @@
 from os import system
 from platform import system as sysname
 
+
 def _help():
     usage = '''
 Usage: clear'''
     print(usage)
+
 
 def main():
     system_name = sysname()

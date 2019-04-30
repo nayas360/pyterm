@@ -1,6 +1,7 @@
 # copy command to copy files only
 from lib.utils import *
 
+
 def _help():
     usage = '''
 Usage: copy (from) (to)
@@ -14,17 +15,18 @@ their values.
 '''
     print(usage)
 
+
 def main(argv):
     if len(argv) < 2 or '-h' in argv:
         _help()
         return
 
     args = get_args(argv)
-    #The shell does the work of replacing
-    #vars already. Code segment below
-    #is not required anymore.
-    #args = replace_vars(args)
-    
+    # The shell does the work of replacing
+    # vars already. Code segment below
+    # is not required anymore.
+    # args = replace_vars(args)
+
     try:
         _from = get_path() + args[0]
         _to = get_path() + args[1]
@@ -37,7 +39,7 @@ def main(argv):
     if os.path.isfile(_to):
         err(2, add='cant move into a file')
         return
-    #print(_from,_to)
+    # print(_from,_to)
     try:
         with open(_from) as f:
             data = f.readlines()
@@ -51,4 +53,4 @@ def main(argv):
     except IOError:
         err(2, add='"' + os.path.basename(_from) + '" could not be copied')
         return
-        #os.remove(_from)
+        # os.remove(_from)

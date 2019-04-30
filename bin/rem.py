@@ -8,8 +8,9 @@ Usage: rem <remarks>
 '''
     print(usage)
 
+
 def main(argv):
-    #rem just checked for -h
-    #argv.pop(0) was never required
+    # rem just checked for -h
+    # argv.pop(0) was never required
     if '-h' in argv:
         _help()

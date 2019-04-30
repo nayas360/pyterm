@@ -1,6 +1,7 @@
 # write function
 from lib.utils import *
 
+
 def _help():
     usage = '''
 Usage: write (filename)
@@ -24,6 +25,7 @@ While in write mode use
 '''
     print(usage)
 
+
 def main(argv):
     if len(argv) < 1 or '-h' in argv:
         _help()
@@ -40,34 +42,35 @@ def main(argv):
     # vars already. Code segment below
     # is not required anymore.
     # argv = replace_vars(argv)
-    
+
     if '-r' in argv:
         argv.pop(0)
         path = get_path() + make_s(argv)
         try:
-            with open(path,'w') as f:
+            with open(path, 'w') as f:
                 pass
-            print('Writing over "', make_s(argv), '" file',sep='')
+            print('Writing over "', make_s(argv), '" file', sep='')
         except IOError:
             err(3, add='Cant write into a directory')
             return
 
     path = get_path() + make_s(argv)
-    s='write>'
+    s = 'write>'
     try:
-        with open(path,'a') as f:
+        with open(path, 'a') as f:
             while True:
-                inp=input(s)
+                inp = input(s)
                 if '-exit' in inp:
                     break
                 elif '-show' in inp:
                     f.close()
                     _show(path)
-                    f = open(path,'a')
+                    f = open(path, 'a')
                 else:
-                    print(inp,file=f)
+                    print(inp, file=f)
     except IOError:
         err(3, add='Cant write into a directory')
+
 
 def _show(path):
     with open(path) as f:
@@ -75,4 +78,3 @@ def _show(path):
     print('_________________<START>_________________\n')
     print(make_s2(data))
     print('__________________<END>__________________\n')
-

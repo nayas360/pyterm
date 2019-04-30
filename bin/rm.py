@@ -2,6 +2,7 @@
 
 from lib.utils import *
 
+
 def main(argv):
     if len(argv) < 1 or '-h' in argv:
         _help()
@@ -32,9 +33,10 @@ def main(argv):
         except OSError:
             err(2, add=argv[0] + ' could not be deleted')
             return
-        print('"', argv[0], '" directory has been deleted',sep='')
+        print('"', argv[0], '" directory has been deleted', sep='')
         return
-    print('"', argv[0], '" file has been deleted',sep='')
+    print('"', argv[0], '" file has been deleted', sep='')
+
 
 def _help():
     usage = '''Usage: rm [(dir)/(file)]

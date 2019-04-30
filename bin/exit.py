@@ -1,7 +1,10 @@
 # Exit function
-from lib.utils import sleep, prop, set_path
-from lib.vfs import cleanup
 from sys import exit
+from time import sleep
+
+from lib.utils import prop, set_path
+from lib.vfs import cleanup
+
 
 def _help():
     usage = '''
@@ -15,6 +18,7 @@ Usage: exit [options]
 '''
     print(usage)
 
+
 def main(argv):
     # exit gets an empty arg list
     # now, shell doesnt send the
@@ -23,7 +27,7 @@ def main(argv):
         _help()
         return
     if '-t' in argv:
-        i = argv.index('-t')+1
+        i = argv.index('-t') + 1
         try:
             t = int(argv[i])
             die(t)
@@ -34,6 +38,7 @@ def main(argv):
             print('You forgot to give the time...')
             print('Exiting with default time...')
     die()
+
 
 def die(t=2):
     print('Stopping Shell...')

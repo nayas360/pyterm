@@ -1,6 +1,8 @@
+# for sleeping
 # Password routines
-from lib.utils import *
-import hashlib, getpass
+import getpass
+import hashlib
+from time import sleep
 
 key = 'lib/lock.key'
 
@@ -13,6 +15,7 @@ Unlock the shell to prove authenticity.'''
     print('Authenticity Proved...')
     sleep(1)
     _reg_pass()
+
 
 def lock():
     try:
@@ -36,6 +39,7 @@ Enter Password to register.
         print('Now locking the shell...\n')
         lock()
 
+
 def _reg_pass():
     p = '''
 You wont be able to see what
@@ -46,6 +50,7 @@ you are typing.
     with open(key, 'w') as kw:
         print(_pass, sep='\n', file=kw)
     print('\nPassword was registered...')
+
 
 def get_pass():
     new_password = getpass.getpass('New Password: ')
@@ -61,6 +66,7 @@ def get_pass():
     else:
         print("Passwords entered doesn't match...")
         return get_pass()
+
 
 def get_hash(_pass):
     _pass = bytes(_pass, 'utf-8')

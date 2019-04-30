@@ -1,11 +1,15 @@
 # CORE file contains main shell mechanisms
 from importlib import import_module as _import
+from time import sleep
+
 from lib.utils import *
 from lib.vfs import init
+
 
 class shell():
     def __init__(self):
         init()
+
     def __repr__(self):
         return '<Shell Instance>'
 
@@ -45,13 +49,13 @@ class shell():
                 except TypeError:
                     err(1)
             except AttributeError:
-                err(1,f)
+                err(1, f)
         elif f not in f_list:
             analyze(f)
 
     def start(self):
         print('Starting Shell...\n')
-        #write config file
+        # write config file
         write_config()
         sleep(1)
         print('Running...\n')

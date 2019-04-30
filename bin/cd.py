@@ -1,6 +1,7 @@
 # cd change directory command
 from lib.utils import *
 
+
 def _help():
     usage = '''Usage: cd (path)
 
@@ -17,6 +18,7 @@ to JUST print the
 current path.
 '''
     print(usage)
+
 
 def main(argv):
     if len(argv) < 1 or '-h' in argv:
@@ -37,7 +39,7 @@ def main(argv):
         return
     if '-cur' in argv:
         path = get_path()
-        print('Path:',path)
+        print('Path:', path)
         return
 
     if './' in argv:
@@ -64,19 +66,20 @@ def main(argv):
             # return
             # else:
             # err(2,path)
-            #return
+            # return
         else:
-            err(2,path)
+            err(2, path)
             return
     except OSError:
-        err(2,path[:-1])
+        err(2, path[:-1])
+
 
 def goto(path):
     if os.path.isfile(path):
         err(2, add='Cant cd into a file')
         return
-    if os.listdir(path) in (os.listdir('lib'), os.listdir('bin'),os.listdir()):
-        err(2,path)
+    if os.listdir(path) in (os.listdir('lib'), os.listdir('bin'), os.listdir()):
+        err(2, path)
         return
     set_path(path)
-    #print('Path:',path)
+    # print('Path:',path)

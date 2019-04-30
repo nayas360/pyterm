@@ -13,6 +13,7 @@ try:
 except OSError:
     pass
 
+
 def main():
     s = shell()
     s.start()

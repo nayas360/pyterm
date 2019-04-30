@@ -1,6 +1,7 @@
 # ren rename command
 from lib.utils import *
 
+
 def _help():
     usage = '''
 Usage: ren (old) (new)
@@ -11,6 +12,7 @@ Usage: ren (old) (new)
 -h            Print this help
 '''
     print(usage)
+
 
 def main(argv):
     if '-h' in argv:
@@ -31,8 +33,8 @@ def main(argv):
         _help()
         return
     old = get_path() + args[0]
-    new = get_path()+args[1]
+    new = get_path() + args[1]
     try:
-        os.rename(old,new)
+        os.rename(old, new)
     except OSError:
         err(2, add=old + ' not found')

@@ -1,8 +1,7 @@
 # commons imports
 
-import os
 import configparser as cp
-from time import sleep
+import os
 
 
 # String manipulators____________________
@@ -56,7 +55,7 @@ def err(n, inp=None, add=None):
         if inp != None:
             print('Error[2]: "', inp, '" path does not exist', sep='')
         elif add != None:
-            print('Error[2]:',add)
+            print('Error[2]:', add)
         else:
             print('Error[2]: invalid path')
         return
@@ -64,8 +63,8 @@ def err(n, inp=None, add=None):
     elif n == 3:
         if inp != None:
             print('Error[3]: "', inp, '" could not be opened', sep='')
-        elif add !=None:
-            print('Error[3]:',add)
+        elif add != None:
+            print('Error[3]:', add)
         else:
             print('Error[3]: file could not be read')
         return
@@ -73,16 +72,16 @@ def err(n, inp=None, add=None):
     elif n == 4:
         if inp != None:
             print('Error[4]: undefined variable "', inp, '"', sep='')
-        elif add !=None:
-            print('Error[4]:',add)
+        elif add != None:
+            print('Error[4]:', add)
         else:
             print('Error[4]: undefined variable')
         return
-    #prototype declaration
-    elif n==5:
-        if inp!=None:
+    # prototype declaration
+    elif n == 5:
+        if inp != None:
             pass
-        elif add!=None:
+        elif add != None:
             pass
         else:
             pass
@@ -90,11 +89,13 @@ def err(n, inp=None, add=None):
     else:
         print('Invalid Error code')
 
-#Manager functions______________________
+
+# Manager functions______________________
 
 # config path
 c_path = 'lib/.configs'
-NULL='NULL'
+NULL = 'NULL'
+
 
 def get_func_list(hidden=False):
     func = os.listdir('bin/')
@@ -116,6 +117,7 @@ def get_func_list(hidden=False):
         f.append('fwd')
     return sorted(f)
 
+
 class property_manager:
     def __init__(self, section):
         self.section = section
@@ -125,7 +127,7 @@ class property_manager:
         config = cp.ConfigParser()
         config.read(c_path)
         if config.has_option(self.section, var):
-            val = config.get(self.section,var)
+            val = config.get(self.section, var)
             return val
         else:
             return NULL
@@ -134,9 +136,10 @@ class property_manager:
         # universal set prop method
         config = cp.ConfigParser()
         config.read(c_path)
-        config.set(self.section,var,val)
-        with open(c_path,'w') as configs:
+        config.set(self.section, var, val)
+        with open(c_path, 'w') as configs:
             config.write(configs)
+
     def vars(self):
         config = cp.ConfigParser()
         config.read(c_path)
@@ -145,12 +148,11 @@ class property_manager:
     def delete(self, var):
         config = cp.ConfigParser()
         config.read(c_path)
-        section='Property'
-        if config.has_option(section,var):
-            config.remove_option(section,var)
-        with open(c_path,'w') as configs:
+        section = 'Property'
+        if config.has_option(section, var):
+            config.remove_option(section, var)
+        with open(c_path, 'w') as configs:
             config.write(configs)
-        
 
     def __repr__(self):
         return '<Property Manager>'
@@ -159,56 +161,61 @@ class property_manager:
 # Property manager instance
 prop = property_manager('Property')
 
-#algorithm to replace vars with values
+
+# algorithm to replace vars with values
 def replace_vars(argv):
     if prop.get('c_char') != NULL:
         c_char = prop.get('c_char')
-    else: c_char = '%'
+    else:
+        c_char = '%'
     for i in range(len(argv)):
         var = argv[i]
         v = var.replace(c_char, '')
         if c_char in var and v in prop.vars():
-            #print(i, var, v)
+            # print(i, var, v)
             argv.pop(i)
-            argv.insert(i,prop.get(v))
+            argv.insert(i, prop.get(v))
     return argv
 
 
 def write_config():
-    #built in check safe
+    # built in check safe
     if '.configs' not in os.listdir('lib'):
         config = cp.ConfigParser()
         # path is reserved
         config['RESERVED'] = {'path': 'root/'}
         # global vars is property
-        config['Property'] = {'save_state':'0'}
-        with open(c_path,'w') as configs:
+        config['Property'] = {'save_state': '0'}
+        with open(c_path, 'w') as configs:
             config.write(configs)
 
-#Path functions_________________________
+
+# Path functions_________________________
 
 def get_path():
-    __doc__='''
+    __doc__ = '''
     Gets current path
     of the virtual file
     system.
     returns a string.'''
     prop = property_manager('RESERVED')
-    path=prop.get('path')
+    path = prop.get('path')
     return path
 
+
 def set_path(path):
-    __doc__='''
+    __doc__ = '''
     Sets current path
     of the virtual file system.
     returns None'''
     if path[-1] != '/':
         path += '/'
     prop = property_manager('RESERVED')
-    prop.set('path',path)
+    prop.set('path', path)
+
 
 def get_last_path(path):
-    __doc__='''
+    __doc__ = '''
     Gets the last path in
     the current directory.
     returns path as string'''
@@ -226,30 +233,31 @@ def get_last_path(path):
     last = make_s2(list(reversed(last)))
     return last
 
+
 def get_prv_path():
-    __doc__='''
+    __doc__ = '''
     Gets the previous path
     of the current directory.
     returns path as a string.'''
     path = get_path()
-    last = get_last_path(path)+'/'
-    path=path[:-len(last)]
+    last = get_last_path(path) + '/'
+    path = path[:-len(last)]
     return path
 
+
 def get_prv_path2(path):
-    __doc__='''
+    __doc__ = '''
     Gets the previous path
     of the path given as argument.
     returns path as string.'''
-    last = get_last_path(path)+'/'
-    path=path[:-len(last)]
+    last = get_last_path(path) + '/'
+    path = path[:-len(last)]
     return path
 
 
-
-#Others_________________________________
+# Others_________________________________
 def get_args(inp):
-    __doc__='''
+    __doc__ = '''
     Gets the arguments seperated
     by a space from a list.
     The argument input cannot have
@@ -257,79 +265,80 @@ def get_args(inp):
     returns arguments as list.'''
     try:
         old = inp[0].replace(' ', '')
-        old = inp[0].replace('"','')
+        old = inp[0].replace('"', '')
     except IndexError:
         print('1st argument is missing')
         return []
     try:
         new = inp[1].replace(' ', '')
-        new = inp[1].replace('"','')
+        new = inp[1].replace('"', '')
     except IndexError:
         print('2nd argument is missing')
         return []
-    return [old,new]
+    return [old, new]
 
 
 def isValid(inp):
     __doc__ = '''Checks for valid input'''
-    exceptsFile='lib/.exception'
+    exceptsFile = 'lib/.exception'
     with open(exceptsFile) as exc:
-        excepts=exc.readlines()
+        excepts = exc.readlines()
     for i in excepts:
-        #print(r'%s'%i)
+        # print(r'%s'%i)
         if i[:-1] in inp:
             return True
     return False
 
+
 def analyze(inp):
-    __doc__='''
+    __doc__ = '''
     Basic function to analyze
     the input for other expressions
     returns None'''
-    #The shell doesnt send the command
-    #name in arg list anymore
-    #so next line is not required
-    #inp=make_s(inp)
-    #print(inp)
-    #check if is a directory
-    if os.path.isdir(get_path()+inp):
+    # The shell doesnt send the command
+    # name in arg list anymore
+    # so next line is not required
+    # inp=make_s(inp)
+    # print(inp)
+    # check if is a directory
+    if os.path.isdir(get_path() + inp):
         if '.' in inp:
-            err(0,inp)
+            err(0, inp)
             return
         print('"', inp, '" is a directory', sep='')
         return
     elif os.path.isfile(get_path() + inp):
-        print('"', inp, '" is a file',sep='')
+        print('"', inp, '" is a file', sep='')
         return
-    #check if is a valid input
+    # check if is a valid input
     if isValid(inp) or 'inp' in inp:
-        err(0,inp)
+        err(0, inp)
         return
-        
+
     try:
         exec('from math import *')
-        #math func inp catcher
-        #to prevent builtins msg disp
+        # math func inp catcher
+        # to prevent builtins msg disp
         if inp in dir():
-            print('"', inp, '" is a mathematical function',sep='')
+            print('"', inp, '" is a mathematical function', sep='')
             return
-        #add true and false
+        # add true and false
         exec('true,false=True,False')
-        #math func lister__________
-        if inp =='--math':
-            d=dir()
+        # math func lister__________
+        if inp == '--math':
+            d = dir()
             d.remove('__doc__')
             d.remove('inp')
             for i in sorted(d):
                 print(i)
             return
-        e=eval(inp)
+        e = eval(inp)
         if e != None:
             print(e)
     except SyntaxError:
         print("Couldn\'t evaluate the expression")
     except NameError as e:
-        err(0,inp)
+        err(0, inp)
     except ZeroDivisionError:
         print('Cannot divide by zero')
     except TypeError as e:

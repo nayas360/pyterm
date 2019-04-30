@@ -1,6 +1,6 @@
 # test lock shell
 from lib.pwd import chpwd, lock
-import hashlib, getpass
+
 
 def _help():
     usage = '''
@@ -11,17 +11,17 @@ Usage: lock [options]
 '''
     print(usage)
 
+
 def main(argv):
     if '-h' in argv:
         _help()
         return
-    #The shell doesnt send the
-    #command name in the arg list
-    #so the next line is not needed
-    #anymore
-    #argv.pop(0)
+    # The shell doesnt send the
+    # command name in the arg list
+    # so the next line is not needed
+    # anymore
+    # argv.pop(0)
     if '-chpass' in argv:
         chpwd()
         return
     lock()
-
